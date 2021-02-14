@@ -1,0 +1,11 @@
+.form-motif .hide {
+  display: none; }
+.form-motif .label-file {
+  height: auto;
+  text-align: center; }
+  .form-motif .label-file img {
+    width: 100%; }
+  .form-motif .label-file i {
+    font-size: 80px; }
+
+/*# sourceMappingURL=my-style.css.map */

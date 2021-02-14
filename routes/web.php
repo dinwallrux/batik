@@ -26,8 +26,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'UserController', ['except' => ['show']]);
+	Route::resource('peran', PeranController::class)->only([
+		'index', 'edit'
+	]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+
+	Route::resource('motif', MotifController::class)->except(['show', 'delete'])->parameters([
+		'motif' => 'id'
+	]);
 });
 

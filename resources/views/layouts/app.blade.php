@@ -17,6 +17,10 @@
         <link href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
         <!-- Argon CSS -->
         <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
+        {{-- Ionicons --}}
+        <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+        {{-- Custom Style --}}
+        <link rel="stylesheet" href="{{ asset('css') }}/my-style.css">
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
@@ -42,5 +46,6 @@
         
         <!-- Argon JS -->
         <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
+        <script src="{{ asset('js') }}/my-script.js"></script>
     </body>
 </html>

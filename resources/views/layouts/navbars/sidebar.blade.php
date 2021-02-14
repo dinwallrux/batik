@@ -105,6 +105,12 @@
                     </div>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('motif.index') }}">
+                        <i class="ni ni-palette text-primary"></i> {{ __('Motif') }}
+                    </a>
+                </li>
+
             </ul>
         </div>
     </div>
