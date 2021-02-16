@@ -40,5 +40,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('obat', ObatController::class)->except(['show', 'delete'])->parameters([
 		'obat' => 'id'
 	]);
+
+	Route::resource('bahan', BahanController::class)->except(['show', 'delete'])->parameters([
+		'bahan' => 'id'
+	]);
 });
 
