@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => __('Tambah Motif')])
+@extends('layouts.app', ['title' => __('Tambah Obat')])
 
 @section('content')
     @include('layouts.headers.main')
@@ -13,7 +13,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" class="form-motif" action="{{ route('motif.store') }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('obat.store') }}" enctype="multipart/form-data">
                             @csrf
                             
                             @if (session('status'))
@@ -27,8 +27,8 @@
 
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('nama') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-name">{{ __('Nama Bahan') }}</label>
-                                    <input type="text" name="nama" id="input-name" class="form-control form-control-alternative{{ $errors->has('nama') ? ' is-invalid' : '' }}" placeholder="{{ __('Nama Bahan') }}" required autofocus>
+                                    <label class="form-control-label" for="input-name">{{ __('Nama Obat') }}</label>
+                                    <input type="text" name="nama" id="input-name" class="form-control form-control-alternative{{ $errors->has('nama') ? ' is-invalid' : '' }}" placeholder="{{ __('Nama Obat') }}" required autofocus>
 
                                     @if ($errors->has('nama'))
                                         <span class="invalid-feedback" role="alert">
@@ -37,16 +37,12 @@
                                     @endif
                                 </div>
                                 <div class="form-group{{ $errors->has('gambar') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label">{{ __('Gambar') }}</label>
-                                    <input type="file" onchange="myEnvironment.imgPreview('#input_motif', '#motif_preview')" name="gambar" id="input_motif" class="hide form-control form-control-alternative{{ $errors->has('gambar') ? ' is-invalid' : '' }}" placeholder="{{ __('Gambar') }}" required>
-                                    <label for="input_motif" class="label-file form-control form-control-alternative{{ $errors->has('gambar') ? ' is-invalid' : '' }}">
-                                        <i class="ion ion-md-cloud-upload"></i>
-                                        <img src="" id="motif_preview" alt="">
-                                    </label>
+                                    <label class="form-control-label">{{ __('Takaran Obat') }}</label>
+                                    <input type="text" name="takaran" id="input-takaran" class="form-control form-control-alternative{{ $errors->has('takaran') ? ' is-invalid' : '' }}" placeholder="{{ __('Takaran Obat') }}" required autofocus>
 
-                                    @if ($errors->has('gambar'))
+                                    @if ($errors->has('takaran'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('gambar') }}</strong>
+                                            <strong>{{ $errors->first('takaran') }}</strong>
                                         </span>
                                     @endif
                                 </div>

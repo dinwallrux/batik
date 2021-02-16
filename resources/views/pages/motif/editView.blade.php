@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => __('User Profile')])
+@extends('layouts.app', ['title' => __('Ubah Motif')])
 
 @section('content')
     @include('layouts.headers.main')
@@ -9,7 +9,7 @@
                 <div class="card bg-secondary shadow">
                     <div class="card-header bg-white border-0">
                         <div class="row align-items-center">
-                            <h3 class="col-12 mb-0">{{ __('Edit Motif') }}</h3>
+                            <h3 class="col-12 mb-0">{{ __('Ubah Motif') }}</h3>
                         </div>
                     </div>
                     <div class="card-body">
@@ -53,7 +53,7 @@
                                 </div>
 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
+                                    <button type="submit" class="btn btn-success mt-4">{{ __('Ubah') }}</button>
                                 </div>
                             </div>
                         </form>

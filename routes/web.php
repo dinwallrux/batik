@@ -36,5 +36,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('motif', MotifController::class)->except(['show', 'delete'])->parameters([
 		'motif' => 'id'
 	]);
+
+	Route::resource('obat', ObatController::class)->except(['show', 'delete'])->parameters([
+		'obat' => 'id'
+	]);
 });
 

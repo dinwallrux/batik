@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => __('Tambah Motif')])
+@extends('layouts.app', ['title' => __('Ubah Obat')])
 
 @section('content')
     @include('layouts.headers.main')
@@ -9,12 +9,13 @@
                 <div class="card bg-secondary shadow">
                     <div class="card-header bg-white border-0">
                         <div class="row align-items-center">
-                            <h3 class="col-12 mb-0">{{ __('Tambah Motif') }}</h3>
+                            <h3 class="col-12 mb-0">{{ __('Ubah Obat') }}</h3>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" class="form-motif" action="{{ route('motif.store') }}" enctype="multipart/form-data">
+                        <form method="post" class="form-motif" action="{{ route('obat.update', $data->id) }}" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             
                             @if (session('status'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -28,7 +29,7 @@
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('nama') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-name">{{ __('Nama Bahan') }}</label>
-                                    <input type="text" name="nama" id="input-name" class="form-control form-control-alternative{{ $errors->has('nama') ? ' is-invalid' : '' }}" placeholder="{{ __('Nama Bahan') }}" required autofocus>
+                                    <input type="text" name="nama" id="input-name" class="form-control form-control-alternative{{ $errors->has('nama') ? ' is-invalid' : '' }}" value="{{ $data->nama }}" placeholder="{{ __('Nama Bahan') }}" required autofocus>
 
                                     @if ($errors->has('nama'))
                                         <span class="invalid-feedback" role="alert">
@@ -37,22 +38,18 @@
                                     @endif
                                 </div>
                                 <div class="form-group{{ $errors->has('gambar') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label">{{ __('Gambar') }}</label>
-                                    <input type="file" onchange="myEnvironment.imgPreview('#input_motif', '#motif_preview')" name="gambar" id="input_motif" class="hide form-control form-control-alternative{{ $errors->has('gambar') ? ' is-invalid' : '' }}" placeholder="{{ __('Gambar') }}" required>
-                                    <label for="input_motif" class="label-file form-control form-control-alternative{{ $errors->has('gambar') ? ' is-invalid' : '' }}">
-                                        <i class="ion ion-md-cloud-upload"></i>
-                                        <img src="" id="motif_preview" alt="">
-                                    </label>
+                                    <label class="form-control-label">{{ __('Takaran Obat') }}</label>
+                                    <input type="text" name="takaran" id="input-takaran" class="form-control form-control-alternative{{ $errors->has('takaran') ? ' is-invalid' : '' }}" value="{{ $data->takaran }}" placeholder="{{ __('Takaran Obat') }}" required autofocus>
 
-                                    @if ($errors->has('gambar'))
+                                    @if ($errors->has('takaran'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('gambar') }}</strong>
+                                            <strong>{{ $errors->first('takaran') }}</strong>
                                         </span>
                                     @endif
                                 </div>
 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success mt-4">{{ __('Simpan') }}</button>
+                                    <button type="submit" class="btn btn-success mt-4">{{ __('Ubah') }}</button>
                                 </div>
                             </div>
                         </form>

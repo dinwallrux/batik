@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => __('User Profile')])
+@extends('layouts.app', ['title' => __('Motif')])
 
 @section('content')
     @include('layouts.headers.main')
@@ -26,6 +26,7 @@
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th scope="col">No</th>
                                         <th scope="col">Nama</th>
                                         <th scope="col">Gambar</th>
                                         <th scope="col"></th>
@@ -34,6 +35,7 @@
                                 <tbody>
                                     @foreach ($datas as $data)
                                     <tr>
+                                        <td>{{ $number++ }}</td>
                                         <td>{{$data->nama}}</td>
                                         <td>
                                             <img src="{{asset($data->gambar)}}" alt="">

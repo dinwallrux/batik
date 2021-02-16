@@ -17,8 +17,9 @@ class MotifController extends Controller
      */
     public function index()
     {
+        $number = 1;
         $datas = Motif::latest()->get();
-        return view('pages.motif.index', compact('datas'));
+        return view('pages.motif.index', compact('number', 'datas'));
     }
 
     /**

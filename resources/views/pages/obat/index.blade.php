@@ -11,7 +11,7 @@
                         <div class="card-header border-0">
                             <div class="row align-items-center">
                                 <div class="col-8">
-                                    <h3 class="mb-0">Obat</h3>
+                                    <h3 class="mb-0">Komposisi Obat Warna</h3>
                                 </div>
                                 <div class="col-4 text-right">
                                     <a href="{{ route('obat.create') }}" class="btn btn-sm btn-primary">Tambah</a>
@@ -26,6 +26,7 @@
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th scope="col">No</th>
                                         <th scope="col">Nama Obat</th>
                                         <th scope="col">Takaran Obat</th>
                                         <th scope="col"></th>
@@ -34,6 +35,7 @@
                                 <tbody>
                                     @foreach ($datas as $data)
                                     <tr>
+                                        <td>{{ $number++ }}</td>
                                         <td>{{$data->nama}}</td>
                                         <td>{{ $data->takaran }}</td>
                                         <td class="text-right">
@@ -43,7 +45,7 @@
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    <a class="dropdown-item" href="{{ route('motif.edit', $data->id) }}">Edit</a>
+                                                    <a class="dropdown-item" href="{{ route('obat.edit', $data->id) }}">Edit</a>
                                                 </div>
                                             </div>
                                         </td>

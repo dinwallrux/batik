@@ -107,7 +107,13 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('motif.index') }}">
-                        <i class="ni ni-palette text-primary"></i> {{ __('Motif') }}
+                        <i class="ion ion-ios-cloud text-primary"></i> {{ __('Motif') }}
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('obat.index') }}">
+                        <i class="ion ion-ios-color-palette text-primary"></i> {{ __('Komposisi Obat Warna') }}
                     </a>
                 </li>
 
