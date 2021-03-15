@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,19 +13,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::group(['middleware' => 'auth'], function () {
+	Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
 	Route::resource('user', 'UserController', ['except' => ['show']]);
 	Route::resource('peran', PeranController::class)->only([
 		'index', 'edit'
@@ -33,8 +26,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 
-	Route::resource('motif', MotifController::class)->except(['show', 'delete'])->parameters([
-		'motif' => 'id'
+	Route::resource('produk', ProdukController::class)->except(['show', 'delete'])->parameters([
+		'produk' => 'id'
 	]);
 
 	Route::resource('obat', ObatController::class)->except(['show', 'delete'])->parameters([
@@ -44,5 +37,16 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('bahan', BahanController::class)->except(['show', 'delete'])->parameters([
 		'bahan' => 'id'
 	]);
+
+	Route::middleware(['auth'])->prefix('cart')->group(function(){
+		Route::get('/', 'CartController@index')->name('cart.index');
+		Route::get('/tambah-produk/{produk}', 'CartController@addCart')->name('cart.add');
+		Route::get('/update/{produk}', 'CartController@updateCart')->name('cart.update');
+		Route::get('/delete/{produk}', 'CartController@deleteCart')->name('cart.delete');
+		Route::get('/checkout', 'CartController@viewCheckout')->name('checkout')->middleware('auth');
+	});
+
+	Route::resource('orders', 'OrderController')->middleware('auth');
+
 });
 

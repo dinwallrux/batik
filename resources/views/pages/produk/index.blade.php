@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => __('Motif')])
+@extends('layouts.app', ['title' => __('Produk')])
 
 @section('content')
     @include('layouts.headers.main')
@@ -11,10 +11,10 @@
                         <div class="card-header border-0">
                             <div class="row align-items-center">
                                 <div class="col-8">
-                                    <h3 class="mb-0">Motif</h3>
+                                    <h3 class="mb-0">Produk</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <a href="{{ route('motif.create') }}" class="btn btn-sm btn-primary">Tambah</a>
+                                    <a href="{{ route('produk.create') }}" class="btn btn-sm btn-primary">Tambah</a>
                                 </div>
                             </div>
                         </div>
@@ -28,6 +28,7 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Nama</th>
+                                        <th scope="col">Harga</th>
                                         <th scope="col">Gambar</th>
                                         <th scope="col"></th>
                                     </tr>
@@ -37,6 +38,7 @@
                                     <tr>
                                         <td>{{ $number++ }}</td>
                                         <td>{{$data->nama}}</td>
+                                        <td>{{$data->harga}}</td>
                                         <td>
                                             <img src="{{asset($data->gambar)}}" alt="">
                                         </td>
@@ -47,7 +49,7 @@
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    <a class="dropdown-item" href="{{ route('motif.edit', $data->id) }}">Edit</a>
+                                                    <a class="dropdown-item" href="{{ route('produk.edit', $data->id) }}">Edit</a>
                                                 </div>
                                             </div>
                                         </td>

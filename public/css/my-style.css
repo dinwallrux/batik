@@ -1,11 +1,16 @@
-.form-motif .hide {
+.form-produk .hide {
   display: none; }
-.form-motif .label-file {
+.form-produk .label-file {
   height: auto;
   text-align: center; }
-  .form-motif .label-file img {
+  .form-produk .label-file img {
     width: 100%; }
-  .form-motif .label-file i {
+  .form-produk .label-file i {
     font-size: 80px; }
+
+.skin-light .number-input.number-input {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
 
 /*# sourceMappingURL=my-style.css.map */
