@@ -16,7 +16,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $number = 1;
+        $datas = Order::latest()->get();
+        return view('pages.pesanan.index', compact('number', 'datas'));
     }
 
     /**
@@ -92,7 +94,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        return view('pages.pesanan.editView', compact('order'));
     }
 
     /**
