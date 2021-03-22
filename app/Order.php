@@ -36,4 +36,9 @@ class Order extends Model
     {
         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d-m-Y');
     }
+
+    public function items()
+    {
+        return $this->belongsToMany(Produk::class, 'order_produk', 'order_id', 'produk_id')->withPivot('quantity', 'price')->withTimestamps();
+    }
 }

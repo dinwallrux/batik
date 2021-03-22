@@ -69,7 +69,19 @@ class OrderController extends Controller
             $errors = $validator->errors();
             return redirect()->route('checkout')->withErrors($errors)->withInput($request->all());
         } else{
-            Order::create($datas);
+            $order = Order::create($datas);
+            
+            $cartItems = \Cart::session(auth()->id())->getContent();
+            foreach($cartItems as $item) {
+                $order->items()->attach($item->id, ['price'=> $item->price, 'quantity'=> $item->quantity]);
+            }
+
+            // Empty cart
+            \Cart::session(auth()->id())->clear();
+
+            // Send email to customer
+
+            // Thank you page
             return redirect()->route('home')
                 ->with('success', 'Obat berhasil ditambahkan.');
         }
