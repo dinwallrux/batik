@@ -1,4 +1,4 @@
-.form-produk{
+.form-gambar{
     .hide{
         display: none;
     }
@@ -6,7 +6,8 @@
         height: auto;
         text-align: center;
         img{
-            width: 100%;
+            width: auto;
+            max-height: 250px;
         }
         i{
             font-size: 80px;

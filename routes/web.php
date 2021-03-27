@@ -34,8 +34,8 @@ Route::group(['middleware' => 'auth'], function () {
 		'obat' => 'id'
 	]);
 
-	Route::resource('bahan', BahanController::class)->except(['show', 'delete'])->parameters([
-		'bahan' => 'id'
+	Route::resource('alat', AlatController::class)->except(['show', 'delete'])->parameters([
+		'alat' => 'id'
 	]);
 
 	Route::middleware(['auth'])->prefix('cart')->group(function(){

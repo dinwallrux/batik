@@ -1,11 +1,12 @@
-.form-produk .hide {
+.form-gambar .hide {
   display: none; }
-.form-produk .label-file {
+.form-gambar .label-file {
   height: auto;
   text-align: center; }
-  .form-produk .label-file img {
-    width: 100%; }
-  .form-produk .label-file i {
+  .form-gambar .label-file img {
+    width: auto;
+    max-height: 250px; }
+  .form-gambar .label-file i {
     font-size: 80px; }
 
 .skin-light .number-input.number-input {

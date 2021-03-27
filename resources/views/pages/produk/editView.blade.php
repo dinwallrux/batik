@@ -49,7 +49,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="form-group{{ $errors->has('gambar') ? ' has-danger' : '' }}">
+                                <div class="form-gambar form-group{{ $errors->has('gambar') ? ' has-danger' : '' }}">
                                     <label class="form-control-label">{{ __('Gambar') }}</label>
                                     <input type="file" onchange="myEnvironment.imgPreview('#input_produk', '#produk_preview')" name="gambar" id="input_produk" class="hide form-control form-control-alternative{{ $errors->has('gambar') ? ' is-invalid' : '' }}" placeholder="{{ __('Gambar') }}">
                                     <label for="input_produk" class="label-file form-control form-control-alternative{{ $errors->has('gambar') ? ' is-invalid' : '' }}">
