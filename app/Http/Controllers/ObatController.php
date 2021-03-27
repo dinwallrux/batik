@@ -27,7 +27,8 @@ class ObatController extends Controller
      */
     public function create()
     {
-        return view('pages.obat.createView');
+        $lists = Obat::campuranObat();
+        return view('pages.obat.createView', compact('lists'));
     }
 
     /**
@@ -39,19 +40,23 @@ class ObatController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'nama' => 'required',
-            'takaran' => 'required'
+            'hasil' => 'required',
         ];
 
         $data = [
-            'nama' => $request->nama,
-            'takaran' => $request->takaran
+            'campuran_1' => $request->campuran_1,
+            'takaran_1' => $request->takaran_1,
+            'campuran_2' => $request->campuran_2,
+            'takaran_2' => $request->takaran_2,
+            'campuran_3' => $request->campuran_3,
+            'takaran_3' => $request->takaran_3,
+            'hasil' => $request->hasil,
         ];
 
         $validator = Validator::make($data, $rules);
         if($validator->fails()){
             $errors = $validator->errors();
-            return redirect()->route('obat.tambah')->withErrors($errors)->withInput($request->all());
+            return redirect()->route('obat.create')->withErrors($errors)->withInput($request->all());
         } else{
             Obat::create($data);
             return redirect()->route('obat.index')
@@ -78,8 +83,9 @@ class ObatController extends Controller
      */
     public function edit($id)
     {
+        $lists = Obat::campuranObat();
         $data = Obat::where('id', $id)->get()->first();
-        return view('pages.obat.editView', compact('data'));
+        return view('pages.obat.editView', compact('lists', 'data'));
     }
 
     /**
@@ -92,13 +98,17 @@ class ObatController extends Controller
     public function update(Request $request, Obat $obat)
     {
         $rules = array(
-            'nama' => 'required',
-            'takaran' => 'required',
+            'hasil' => 'required',
         );
 
         $data = [
-            'nama' => $request->nama,
-            'takaran' => $request->takaran
+            'campuran_1' => $request->campuran_1,
+            'takaran_1' => $request->takaran_1,
+            'campuran_2' => $request->campuran_2,
+            'takaran_2' => $request->takaran_2,
+            'campuran_3' => $request->campuran_3,
+            'takaran_3' => $request->takaran_3,
+            'hasil' => $request->hasil,
         ];
 
         $validator = Validator::make($data, $rules);

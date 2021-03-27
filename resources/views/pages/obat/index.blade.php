@@ -27,8 +27,7 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">Nama Obat</th>
-                                        <th scope="col">Takaran Obat</th>
+                                        <th scope="col">Hasil</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
@@ -36,8 +35,7 @@
                                     @foreach ($datas as $data)
                                     <tr>
                                         <td>{{ $number++ }}</td>
-                                        <td>{{$data->nama}}</td>
-                                        <td>{{ $data->takaran }}</td>
+                                        <td>{{ $data->hasil }}</td>
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"

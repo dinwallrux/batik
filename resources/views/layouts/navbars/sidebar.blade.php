@@ -98,7 +98,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('bahan.index') }}">
-                        <i class="ion ion-md-build text-primary"></i> {{ __('Bahan Baku') }}
+                        <i class="ion ion-md-build text-primary"></i> {{ __('Alat') }}
                     </a>
                 </li>
 
