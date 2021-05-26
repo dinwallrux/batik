@@ -1,3 +1,9 @@
+.bootstrap-select.full-width {
+  width: 100% !important; }
+
+.navbar-vertical.navbar-expand-md .navbar-brand-img {
+  max-height: 120px; }
+
 .form-gambar .hide {
   display: none; }
 .form-gambar .label-file {
@@ -13,5 +19,27 @@
   display: flex;
   align-items: center;
   justify-content: center; }
+
+.service-item .product-image {
+  height: 200px;
+  margin-bottom: 20px; }
+  .service-item .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; }
+.service-item .title-price {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 10px; }
+  .service-item .title-price .service-title {
+    text-align: left;
+    width: 55%;
+    margin-right: 10px;
+    margin-bottom: 0; }
+  .service-item .title-price p {
+    color: #00afcb;
+    font-weight: 500;
+    font-size: 15px; }
 
 /*# sourceMappingURL=my-style.css.map */

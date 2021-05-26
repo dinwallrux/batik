@@ -53,7 +53,7 @@ class OrderController extends Controller
             'user_id' => auth()->id(),
             'grand_total' => \Cart::session(auth()->id())->getTotal(),
             'item_count' => \Cart::session(auth()->id())->getContent()->count(),
-            
+
             'shipping_fullname' => $request->fullname,
             'shipping_address' => $request->address,
             'shipping_city' => $request->city,
@@ -70,10 +70,10 @@ class OrderController extends Controller
             return redirect()->route('checkout')->withErrors($errors)->withInput($request->all());
         } else{
             $order = Order::create($datas);
-            
+
             $cartItems = \Cart::session(auth()->id())->getContent();
             foreach($cartItems as $item) {
-                $order->items()->attach($item->id, ['price'=> $item->price, 'quantity'=> $item->quantity]);
+                $order->items()->attach($item->id, ['price'=> $item->price, 'quantity'=> $item->quantity, 'obat_id' => $item->attributes->color ]);
             }
 
             // Empty cart

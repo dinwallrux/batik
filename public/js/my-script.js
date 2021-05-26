@@ -4,13 +4,12 @@ let myEnvironment = {
     },
     init: function(){
         let self = this;
-        
+
         // self.motifInputFile();
     },
     imgPreview: function(input, preview) {
         let input_produk = $(input)[0];
 
-        console.log('Gambar ==> ', input_produk.files);
         if(input_produk.files.length < 1){
             $('.ion-md-cloud-upload').removeClass('hide');
             $(preview).attr('src', '');
@@ -23,6 +22,7 @@ let myEnvironment = {
             reader.readAsDataURL(input_produk.files[0]); // convert to base64 string
             $('.ion-md-cloud-upload').addClass('hide');
         }
+        $('.selectpicker').selectpicker();
     },
 }
 

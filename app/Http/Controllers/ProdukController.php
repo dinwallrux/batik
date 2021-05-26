@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Produk;
+use App\Obat;
 use Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -29,7 +30,8 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        return view('pages.produk.createView');
+        $colors = Obat::all();
+        return view('pages.produk.createView', compact('colors'));
     }
 
     /**
@@ -71,7 +73,13 @@ class ProdukController extends Controller
             $errors = $validator->errors();
             return redirect()->route('produk.tambah')->withErrors($errors)->withInput($request->all());
         } else{
-            Produk::create($data);
+            $produk = Produk::create($data);
+            
+            $produk->obat()->attach($request->warna);
+            // $colorItems = Obat::find($request->warna)->get();
+            // foreach($colorItems as $item){
+            //     $produk->produk()->attach($item->id);
+            // }
             return redirect()->route('produk.index')
                 ->with('success', 'Produk berhasil ditambahkan.');
         }
@@ -94,10 +102,11 @@ class ProdukController extends Controller
      * @param  \App\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Produk $produk)
     {
-        $data = Produk::where('id', $id)->get()->first();
-        return view('pages.produk.editView', compact('data'));
+        $data = Produk::where('id', $produk->id)->with('obat')->get()->first();
+        $colors = Obat::all();
+        return view('pages.produk.editView', compact('data', 'colors'));
     }
 
     /**
@@ -116,7 +125,7 @@ class ProdukController extends Controller
         );
 
         // Ngambil gambar lama
-        $oldPhoto = Produk::where('id', $request->id)->first()->getOriginal('gambar');
+        $oldPhoto = $produk->getOriginal('gambar');
 
         // Check apakah ada gambar baru yg mau di update
         if($request->hasFile('gambar')){
@@ -151,7 +160,9 @@ class ProdukController extends Controller
             $errors = $validator->errors();
             return redirect()->route('produk.edit')->withErrors($errors)->withInput($request->all());
         } else{
-            Produk::where('id', $request->id)->update($data);
+            $produk->obat()->sync($request->warna);
+            $produk->update($data);
+
             return redirect()->route('produk.index')
                 ->with('success', 'Produk berhasil diupdate.');
         }

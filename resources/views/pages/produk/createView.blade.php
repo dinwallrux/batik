@@ -63,6 +63,16 @@
                                     @endif
                                 </div>
 
+                                <div class="form-group row">
+                                    <div class="col-lg-12">
+                                        <select name="warna[]" class="selectpicker full-width" data-none-selected-text="Pilih Warna" data-none-results-text="Pencarian tidak ditemukan" data-style="btn" multiple data-live-search="true">
+                                            @foreach ($colors as $color)
+                                            <option value="{{ $color->id }}">{{ $color->hasil }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Simpan') }}</button>
                                 </div>

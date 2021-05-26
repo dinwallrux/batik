@@ -22,11 +22,12 @@ https://templatemo.com/tm-537-art-factory
     <link rel="stylesheet" type="text/css" href="{{asset('home')}}/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="{{asset('home')}}/css/templatemo-art-factory.css">
     <link rel="stylesheet" type="text/css" href="{{asset('home')}}/css/owl-carousel.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('css')}}/my-style.css">
 
     </head>
-    
+
     <body>
-    
+
     <!-- ***** Preloader Start ***** -->
     <div id="preloader">
         <div class="jumper">
@@ -34,10 +35,10 @@ https://templatemo.com/tm-537-art-factory
             <div></div>
             <div></div>
         </div>
-    </div>  
+    </div>
     <!-- ***** Preloader End ***** -->
-    
-    
+
+
     <!-- ***** Header Area Start ***** -->
     <header class="header-area header-sticky">
         <div class="container">
@@ -164,16 +165,26 @@ https://templatemo.com/tm-537-art-factory
             </div>
             <div class="row pt-5">
                 @foreach ($products as $product)
-                <div class="col-lg-4 text-center pb-4 mb-4">
+                <form class="col-lg-4 text-center pb-4 mb-4" action="{{ route('cart.add', [$product->id]) }}">
+                    @csrf
                     <div class="service-item">
-                        <div class="icon">
-                            <i><img src="{{asset($product->gambar)}}" alt="" class="w-100"></i>
+                        <div class="product-image">
+                            <img src="{{asset($product->gambar)}}" alt="">
                         </div>
-                        <h5 class="service-title">{{$product->nama}}</h5>
-                        <p>Rp.@convert($product->harga)</p>
-                        <a href="{{ route('cart.add', $product->id) }}" class="main-button">Beli</a>
+                        <div class="title-price">
+                            <h5 class="service-title">{{$product->nama}}</h5>
+                            <p>Rp.@convert($product->harga)</p>
+                        </div>
+                        <div class="options">
+                            <select name="color" class="form-control mb-2">
+                                @foreach ($product->obat as $color)
+                                <option value="{{ $color->id }}">{{ $color->hasil }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <button class="btn btn-primary main-button">Beli</button>
                     </div>
-                </div>
+                </form>
                 @endforeach
             </div>
         </div>
@@ -199,7 +210,7 @@ https://templatemo.com/tm-537-art-factory
             </div>
         </div>
     </footer>
-    
+
     <!-- jQuery -->
     <script src="{{asset('home')}}/js/jquery-2.1.0.min.js"></script>
 
@@ -212,10 +223,11 @@ https://templatemo.com/tm-537-art-factory
     <script src="{{asset('home')}}/js/scrollreveal.min.js"></script>
     <script src="{{asset('home')}}/js/waypoints.min.js"></script>
     <script src="{{asset('home')}}/js/jquery.counterup.min.js"></script>
-    <script src="{{asset('home')}}/js/imgfix.min.js"></script> 
-    
+    <script src="{{asset('home')}}/js/imgfix.min.js"></script>
+
     <!-- Global Init -->
     <script src="{{asset('home')}}/js/custom.js"></script>
+    <script src="{{asset('js')}}/my-script.js"></script>
 
   </body>
 </html>

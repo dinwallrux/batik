@@ -39,4 +39,9 @@ class Obat extends Model
         ];
         return $lists;
     }
+
+    public function produk()
+    {
+        return $this->belongsToMany(Produk::class)->withTimestamps();
+    }
 }

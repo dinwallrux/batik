@@ -30,6 +30,7 @@
                                         <th scope="col">Nama</th>
                                         <th scope="col">Harga</th>
                                         <th scope="col">Gambar</th>
+                                        <th scope="col">Warna</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
@@ -41,6 +42,11 @@
                                         <td>{{$data->harga}}</td>
                                         <td>
                                             <img src="{{asset($data->gambar)}}" alt="">
+                                        </td>
+                                        <td>
+                                            @foreach ($data->obat as $color)
+                                                {{ $color->hasil }},
+                                            @endforeach
                                         </td>
                                         <td class="text-right">
                                             <div class="dropdown">

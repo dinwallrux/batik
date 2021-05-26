@@ -26,9 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 
-	Route::resource('produk', ProdukController::class)->except(['show', 'delete'])->parameters([
-		'produk' => 'id'
-	]);
+	Route::resource('produk', ProdukController::class)->except(['show', 'delete']);
 
 	Route::resource('obat', ObatController::class)->except(['show', 'delete'])->parameters([
 		'obat' => 'id'

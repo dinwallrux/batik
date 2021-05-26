@@ -2,21 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Obat;
 use App\Produk;
 use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function addCart(Produk $produk)
+    public function addCart(Produk $produk, Request $request)
     {
+        $generateId = uniqid (rand (0, 10));
         // Tambah produk ke cart
         \Cart::session(auth()->id())->add(array(
             'id' => $produk->id,
             'name' => $produk->nama,
             'price' => $produk->harga,
             'quantity' => 1,
-            'attributes' => array(),
+            'attributes' => array(
+                'color' => $request->color
+            ),
             'associatedModel' => $produk
         ));
 
@@ -26,8 +30,13 @@ class CartController extends Controller
     public function index()
     {
         $cartItems = \Cart::session(auth()->id())->getContent();
+        $colorId = 0;
+        foreach ($cartItems as $cartItem) {
+            $colorId = $cartItem->attributes->color;
+        }
+        $color = Obat::all()->where('id', $colorId)->first();
 
-        return view('pages.cart.index', compact('cartItems'));
+        return view('pages.cart.index', compact('cartItems', 'color'));
     }
 
     public function updateCart(Request $request, Produk $produk)

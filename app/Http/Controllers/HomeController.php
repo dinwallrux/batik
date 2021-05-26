@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ObatProduk;
 use App\Produk;
 
 class HomeController extends Controller

@@ -27,7 +27,6 @@
                         <div class="card-body">
 
                             <h5 class="mb-4">Cart (<span>{{\Cart::session(auth()->id())->getContent()->count()}}</span> items)</h5>
-
                             @foreach ($cartItems as $item)
                             <div class="row mb-4">
                                 <div class="col-md-5 col-lg-3 col-xl-3">
@@ -49,8 +48,12 @@
                                         <div class="d-flex justify-content-between">
                                             <div>
                                                 <h5>{{ $item->name }}</h5>
-                                                <p class="mb-3 text-muted text-uppercase small">Shirt - blue</p>
-                                                <p class="mb-2 text-muted text-uppercase small">Color: blue</p>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12">
+                                                        <label class="form-control-label" for="input-harga">{{ __('Warna') }}</label>
+                                                        {{ $color->hasil }}
+                                                    </div>
+                                                </div>
                                                 <p class="mb-3 text-muted text-uppercase small">Size: M</p>
                                             </div>
                                             <div>
@@ -68,7 +71,7 @@
                                             <div>
                                                 <form action="{{ route('cart.delete', $item->id) }}">
                                                     <button type="submit" class="card-link-secondary small text-uppercase mr-3" style="outline: none; border: none; background-color: transparent;">
-                                                        <i class="fas fa-trash-alt mr-1"></i> Remove item 
+                                                        <i class="fas fa-trash-alt mr-1"></i> Remove item
                                                     </button>
                                                 </form>
                                             </div>
