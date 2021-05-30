@@ -27,17 +27,17 @@
                         <div class="card-body">
 
                             <h5 class="mb-4">Cart (<span>{{\Cart::session(auth()->id())->getContent()->count()}}</span> items)</h5>
-                            @foreach ($cartItems as $item)
+                            @foreach ($carts as $cart)
                             <div class="row mb-4">
                                 <div class="col-md-5 col-lg-3 col-xl-3">
                                     <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
                                         <img class="img-fluid w-100"
-                                            src="{{ asset($item->associatedModel->gambar) }}"
+                                            src="{{ asset($cart['image']) }}"
                                             alt="Sample">
                                         <a href="#!">
                                             <div class="mask waves-effect waves-light">
                                                 <img class="img-fluid w-100"
-                                                    src="{{ asset($item->associatedModel->gambar) }}">
+                                                    src="{{ asset($cart['image']) }}">
                                                 <div class="mask rgba-black-slight waves-effect waves-light"></div>
                                             </div>
                                         </a>
@@ -47,7 +47,7 @@
                                     <div>
                                         <div class="d-flex justify-content-between">
                                             <div>
-                                                <h5>{{ $item->name }}</h5>
+                                                <h5>{{ $cart['name'] }}</h5>
                                                 <div class="form-group row">
                                                     <div class="col-lg-12">
                                                         <label class="form-control-label" for="input-harga">{{ __('Warna') }}</label>
@@ -57,10 +57,10 @@
                                                 <p class="mb-3 text-muted text-uppercase small">Size: M</p>
                                             </div>
                                             <div>
-                                                <form action="{{ route('cart.update', $item->id) }}">
+                                                <form action="{{ route('cart.update', $cart['id']) }}">
                                                     <div class="def-number-input number-input safari_only mb-0 w-100">
                                                         <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
-                                                        <input class="quantity" min="0" name="quantity" value="{{ $item->quantity }}" type="number">
+                                                        <input class="quantity" min="0" name="quantity" value="{{ $cart['quantity'] }}" type="number">
                                                         <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
                                                     </div>
                                                     <input type="submit" class="btn btn-success mt-2" value="Update">
@@ -69,13 +69,13 @@
                                         </div>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div>
-                                                <form action="{{ route('cart.delete', $item->id) }}">
+                                                <form action="{{ route('cart.delete', $cart['id']) }}">
                                                     <button type="submit" class="card-link-secondary small text-uppercase mr-3" style="outline: none; border: none; background-color: transparent;">
                                                         <i class="fas fa-trash-alt mr-1"></i> Remove item
                                                     </button>
                                                 </form>
                                             </div>
-                                            <p class="mb-0"><span><strong>Rp.@convert(\Cart::session(auth()->id())->get($item->id)->getPriceSum())</strong></span></p>
+                                            <p class="mb-0"><span><strong>Rp.@convert($cart['price'])</strong></span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@
                                             <p class="mb-0">(including VAT)</p>
                                         </strong>
                                     </div>
-                                    <span><strong>Rp.@convert(\Cart::session(auth()->id())->getTotal())</strong></span>
+                                    <span><strong>Rp.@convert($sumTotal)</strong></span>
                                 </li>
                             </ul>
 

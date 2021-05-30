@@ -188,23 +188,23 @@
                 <!-- Heading -->
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Your cart</span>
-                    <span class="badge badge-secondary badge-pill">{{\Cart::session(auth()->id())->getContent()->count()}}</span>
+                    <span class="badge badge-secondary badge-pill">{{count(session()->get('cart'))}}</span>
                 </h4>
 
                 <!-- Cart -->
                 <ul class="list-group mb-3 z-depth-1">
-                    @foreach ($cartItems as $item)
+                    @foreach ($carts as $cart)
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
-                            <h6 class="my-0">{{ $item->name }}</h6>
-                            <small class="text-muted">Qty: {{ $item->quantity }}</small>
+                            <h6 class="my-0">{{ $cart['name'] }}</h6>
+                            <small class="text-muted">Qty: {{ $cart['quantity'] }}</small>
                         </div>
-                        <span class="text-muted">Rp.@convert(\Cart::session(auth()->id())->get($item->id)->getPriceSum())</span>
+                        <span class="text-muted">Rp.@convert($cart['price'] * $cart['quantity'])</span>
                     </li>
                     @endforeach
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total</span>
-                        <strong>Rp.@convert(\Cart::session(auth()->id())->getTotal())</strong>
+                        <strong>Rp.@convert($sumTotal)</strong>
                     </li>
                 </ul>
                 <!-- Cart -->

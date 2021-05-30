@@ -71,13 +71,13 @@ class OrderController extends Controller
         } else{
             $order = Order::create($datas);
 
-            $cartItems = \Cart::session(auth()->id())->getContent();
-            foreach($cartItems as $item) {
-                $order->items()->attach($item->id, ['price'=> $item->price, 'quantity'=> $item->quantity, 'obat_id' => $item->attributes->color ]);
+            $carts = session()->get('cart');
+            foreach($carts as $cart) {
+                $order->items()->attach($cart['id'], ['price'=> $cart['price'], 'quantity'=> $cart['quantity'], 'obat_id' => $cart['color'] ]);
             }
 
             // Empty cart
-            \Cart::session(auth()->id())->clear();
+            session()->forget('cart');
 
             // Send email to customer
 
