@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Mail\CheckoutEmail;
+use App\OrderProduk;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Darryldecode\Cart\Cart;
@@ -48,11 +51,18 @@ class OrderController extends Controller
             'shipping_zipcode' => 'required',
         ];
 
+        $carts = session()->get('cart');
+        $sumTotal = 0;
+        foreach ($carts as $cart) {
+            $total = $cart['price'] * $cart['quantity'];
+            $sumTotal += $total;
+        }
+
         $datas = [
             'order_number' => uniqid('OrderNumber-'),
             'user_id' => auth()->id(),
-            'grand_total' => \Cart::session(auth()->id())->getTotal(),
-            'item_count' => \Cart::session(auth()->id())->getContent()->count(),
+            'grand_total' => $sumTotal,
+            'item_count' => count(session()->get('cart')),
 
             'shipping_fullname' => $request->fullname,
             'shipping_address' => $request->address,
@@ -79,11 +89,13 @@ class OrderController extends Controller
             // Empty cart
             session()->forget('cart');
 
+            $produkOrdered = Order::where('id', $order->id)->with('items')->get()->first();
             // Send email to customer
+            Mail::to($request->email)->send(new CheckoutEmail($produkOrdered));
 
             // Thank you page
-            return redirect()->route('home')
-                ->with('success', 'Obat berhasil ditambahkan.');
+            return redirect()->route('order.success')
+                ->with('success', 'Order berhasil.');
         }
     }
 
@@ -130,5 +142,10 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+    public function orderSuccess()
+    {
+        return view('pages.cart.orderSuccess');
     }
 }

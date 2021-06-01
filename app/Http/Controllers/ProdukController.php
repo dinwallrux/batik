@@ -53,7 +53,7 @@ class ProdukController extends Controller
 
         $img = Image::make($image);
         $img->resize(300, 300, function ($constraint) {
-            $constraint->aspectRatio();                 
+            $constraint->aspectRatio();
         });
         $img->stream(); // <-- Key point
 
@@ -74,7 +74,7 @@ class ProdukController extends Controller
             return redirect()->route('produk.tambah')->withErrors($errors)->withInput($request->all());
         } else{
             $produk = Produk::create($data);
-            
+
             $produk->obat()->attach($request->warna);
             // $colorItems = Obat::find($request->warna)->get();
             // foreach($colorItems as $item){
@@ -93,7 +93,7 @@ class ProdukController extends Controller
      */
     public function show(Produk $produk)
     {
-        
+
     }
 
     /**
@@ -134,10 +134,10 @@ class ProdukController extends Controller
 
             $img = Image::make($image);
             $img->resize(300, 300, function ($constraint) {
-                $constraint->aspectRatio();                 
+                $constraint->aspectRatio();
             });
             $img->stream(); // <-- Key point
-    
+
             Storage::disk('local')->put('public'.'/'.$fileName, $img);
             $path = Storage::url($fileName);
 

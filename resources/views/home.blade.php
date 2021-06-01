@@ -10,13 +10,6 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
 
     <title>Batik</title>
-<!--
-
-ART FACTORY
-
-https://templatemo.com/tm-537-art-factory
-
--->
     <!-- Additional CSS Files -->
     <link rel="stylesheet" type="text/css" href="{{asset('home')}}/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{asset('home')}}/css/font-awesome.css">
@@ -72,7 +65,11 @@ https://templatemo.com/tm-537-art-factory
                                     <i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 16px;"></i>
                                     <span class="badge badge-success" style="padding: 2px 2px 2px 4px;">
                                         @auth
-                                            {{ \Cart::session(auth()->id())->getContent()->count() }}
+                                            @if( session()->get('cart') != null )
+                                                {{ count(session()->get('cart')) }}
+                                            @else
+                                                0
+                                            @endif
                                         @else
                                             0
                                         @endauth

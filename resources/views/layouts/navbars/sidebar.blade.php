@@ -5,7 +5,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Brand -->
-        <a class="navbar-brand pt-0" href="{{ route('dashboard') }}">
+        <a class="navbar-brand pt-0" href="{{ route('home') }}">
             <img src="{{ asset('argon') }}/img/brand/logo-batik.png" class="navbar-brand-img" alt="...">
         </a>
         <!-- User -->
@@ -78,11 +78,6 @@
             </form>
             <!-- Navigation -->
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('dashboard') }}">
-                        <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
-                    </a>
-                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('produk.index') }}">

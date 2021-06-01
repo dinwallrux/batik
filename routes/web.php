@@ -39,12 +39,17 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::middleware(['auth'])->prefix('cart')->group(function(){
 		Route::get('/', 'CartController@index')->name('cart.index');
 		Route::get('/tambah-produk/{produk}', 'CartController@addCart')->name('cart.add');
-		Route::get('/update/{produk}', 'CartController@updateCart')->name('cart.update');
-		Route::get('/delete/{produk}', 'CartController@deleteCart')->name('cart.delete');
+		Route::get('/update/{produk}/{color}', 'CartController@updateCart')->name('cart.update');
+		Route::get('/delete/{produk}/{color}', 'CartController@deleteCart')->name('cart.delete');
 		Route::get('/checkout', 'CartController@viewCheckout')->name('checkout')->middleware('auth');
 	});
 
+
 	Route::resource('orders', 'OrderController')->middleware('auth');
+
+	Route::get('/order-success','OrderController@orderSuccess')->name('order.success');
+
+	Route::get('/email-checkout','CheckoutController@index');
 
 });
 

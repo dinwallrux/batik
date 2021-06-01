@@ -16,7 +16,7 @@ class CartController extends Controller
 
         if(!$cart) {
             $cart = [
-                $produk->id => [
+                $produk->id + $request->color => [
                     'id' => $produk->id,
                     'name' => $produk->nama,
                     'price' => $produk->harga,
@@ -31,15 +31,15 @@ class CartController extends Controller
             return redirect()->route('cart.index');
         }
 
-        if(isset($cart[$produk->id])) {
-            $cart[$produk->id]['quantity']++;
+        if(isset($cart[$produk->id + $request->color])) {
+            $cart[$produk->id + $request->color]['quantity']++;
             session()->put('cart', $cart);
 //            return redirect()->back()->with('success', 'Product added to cart successfully!');
             return redirect()->route('cart.index');
         }
 
         // if item not exist in cart then add to cart with quantity = 1
-        $cart[$produk->id] = [
+        $cart[$produk->id + $request->color] = [
             'id' => $produk->id,
             'name' => $produk->nama,
             'price' => $produk->harga,
@@ -69,34 +69,33 @@ class CartController extends Controller
             $total = $cart['price'] * $cart['quantity'];
             $sumTotal += $total;
         }
-        $color = Obat::all()->where('id', $colorId)->first();
 
-        return view('pages.cart.index', compact('carts', 'color', 'sumTotal'));
+        return view('pages.cart.index', compact('carts', 'colors', 'sumTotal'));
     }
 
-    public function updateCart(Request $request, Produk $produk)
+    public function updateCart(Request $request, Produk $produk, $color)
     {
         // update the item on cart
         $cart = session()->get('cart');
-        $cart[$produk->id]['quantity'] = $request->quantity;
+        $cart[$produk->id + $color]['quantity'] = $request->quantity;
 
         session()->put('cart', $cart);
         session()->flash('success', 'Cart updated successfully');
         return redirect()->back();
     }
 
-    public function deleteCart(Produk $produk)
+    public function deleteCart(Produk $produk, $color)
     {
         if($produk->id) {
-            $cart = session()->get('cart');
-            if(isset($cart[$produk->id])) {
-                unset($cart[$produk->id]);
-                session()->put('cart', $cart);
-            }
-            session()->flash('success', 'Product has been removed');
-        }
+            $carts = session()->get('cart');
 
-        return redirect()->back();
+            if(isset($carts[$produk->id + $color])) {
+                unset($carts[$produk->id + $color]);
+                session()->put('cart', $carts);
+                session()->flash('success', 'Product has been removed');
+                return redirect()->back();
+            }
+        }
     }
 
     public function viewCheckout()

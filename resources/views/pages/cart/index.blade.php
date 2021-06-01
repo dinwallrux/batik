@@ -26,7 +26,7 @@
                     <div class="card wish-list mb-4">
                         <div class="card-body">
 
-                            <h5 class="mb-4">Cart (<span>{{\Cart::session(auth()->id())->getContent()->count()}}</span> items)</h5>
+                            <h5 class="mb-4">Cart (<span>{{ count($carts) }}</span> items)</h5>
                             @foreach ($carts as $cart)
                             <div class="row mb-4">
                                 <div class="col-md-5 col-lg-3 col-xl-3">
@@ -51,13 +51,12 @@
                                                 <div class="form-group row">
                                                     <div class="col-lg-12">
                                                         <label class="form-control-label" for="input-harga">{{ __('Warna') }}</label>
-                                                        {{ $color->hasil }}
+                                                        {{ App\Obat::where('id', $cart['color'])->get()->first()->hasil }}
                                                     </div>
                                                 </div>
-                                                <p class="mb-3 text-muted text-uppercase small">Size: M</p>
                                             </div>
                                             <div>
-                                                <form action="{{ route('cart.update', $cart['id']) }}">
+                                                <form action="{{ route('cart.update', [$cart['id'], $cart['color']]) }}">
                                                     <div class="def-number-input number-input safari_only mb-0 w-100">
                                                         <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
                                                         <input class="quantity" min="0" name="quantity" value="{{ $cart['quantity'] }}" type="number">
@@ -69,7 +68,7 @@
                                         </div>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div>
-                                                <form action="{{ route('cart.delete', $cart['id']) }}">
+                                                <form action="{{ route('cart.delete', [$cart['id'], $cart['color']]) }}">
                                                     <button type="submit" class="card-link-secondary small text-uppercase mr-3" style="outline: none; border: none; background-color: transparent;">
                                                         <i class="fas fa-trash-alt mr-1"></i> Remove item
                                                     </button>
@@ -97,25 +96,13 @@
                     <div class="card mb-4">
                         <div class="card-body">
 
-                            <h5 class="mb-3">The total amount of</h5>
+                            <h5 class="mb-3">Total</h5>
 
                             <ul class="list-group list-group-flush">
                                 <li
-                                    class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                                    Temporary amount
-                                    <span>$53.98</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                    Shipping
-                                    <span>Gratis</span>
-                                </li>
-                                <li
                                     class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                                     <div>
-                                        <strong>The total amount of</strong>
-                                        <strong>
-                                            <p class="mb-0">(including VAT)</p>
-                                        </strong>
+                                        <strong>Total Harga</strong>
                                     </div>
                                     <span><strong>Rp.@convert($sumTotal)</strong></span>
                                 </li>
