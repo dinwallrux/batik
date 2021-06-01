@@ -8,3 +8,39 @@
 .order-success h1 {
     text-transform: uppercase;
 }
+
+.detail-order {
+    display: flex;
+}
+
+.detail-order > div{
+    margin-right: 40px;
+}
+
+.detail-order h3 {
+    text-transform: uppercase;
+}
+
+.detail-order p {
+    margin-bottom: 0;
+}
+
+.table-detail-order {
+    margin-top: 40px;
+}
+
+.table-detail-order tbody td {
+    vertical-align: middle;
+}
+
+.table-detail-order .product {
+    display: flex;
+    align-items: center;
+}
+
+.table-detail-order .product img{
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 20px;
+}

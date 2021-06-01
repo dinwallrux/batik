@@ -19,6 +19,7 @@
 
     <!-- Custom Style -->
     <link rel="stylesheet" href="{{ asset('css/my-style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body class="skin-light">
     @yield('content')

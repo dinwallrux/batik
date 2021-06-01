@@ -23,6 +23,7 @@
         <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
         {{-- Custom Style --}}
         <link rel="stylesheet" href="{{ asset('css') }}/my-style.css">
+        <link rel="stylesheet" href="{{ asset('css') }}/style.css">
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
@@ -31,7 +32,7 @@
             </form>
             @include('layouts.navbars.sidebar')
         @endauth
-        
+
         <div class="main-content">
             @include('layouts.navbars.navbar')
             @yield('content')
@@ -43,9 +44,9 @@
 
         <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
         <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        
+
         @stack('js')
-        
+
         <!-- Argon JS -->
         <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
         <!-- Latest compiled and minified JavaScript -->

@@ -37,7 +37,7 @@
                                     <tr>
                                         <td>{{ $number++ }}</td>
                                         <td>
-                                            <a href="{{ route('orders.show', $data->id) }}">
+                                            <a href="{{ route('order.self.view', $data->id) }}">
                                                 {{ $data->order_number }}
                                             </a>
                                         </td>

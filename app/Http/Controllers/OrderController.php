@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\Mail\CheckoutEmail;
 use App\OrderProduk;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -107,7 +108,9 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        $orderDetail = Order::where('id', $order->id)->with('items')->get()->first();
+
+        return view('pages.pesanan.show', compact('orderDetail'));
     }
 
     /**
@@ -130,7 +133,25 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $rules = [
+            'status' => 'required',
+        ];
+
+        $data = [
+            'status' => $request->status,
+        ];
+
+        $validator = Validator::make($data, $rules);
+
+        if($validator->fails()){
+            $errors = $validator->errors();
+            return redirect()->route('orders')->withErrors($errors)->withInput($request->all());
+        } else {
+            $order->update($data);
+
+            return redirect()->route('orders.index')
+                ->with('success', 'Order berhasil diupdate.');
+        }
     }
 
     /**
@@ -147,5 +168,12 @@ class OrderController extends Controller
     public function orderSuccess()
     {
         return view('pages.cart.orderSuccess');
+    }
+
+    public function orderSelf()
+    {
+        $number = 1;
+        $datas = Order::latest()->where('user_id', Auth::user()->id)->get();
+        return view('pages.pesanan.self', compact('number', 'datas'));
     }
 }

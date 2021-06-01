@@ -53,7 +53,7 @@
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
                     <div class="col-6 collapse-brand">
-                        <a href="{{ route('dashboard') }}">
+                        <a href="{{ route('produk.index') }}">
                             <img src="{{ asset('argon') }}/img/brand/blue.png">
                         </a>
                     </div>
@@ -79,30 +79,40 @@
             <!-- Navigation -->
             <ul class="navbar-nav">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('produk.index') }}">
-                        <i class="ion ion-ios-cube text-primary"></i> {{ __('Produk') }}
-                    </a>
-                </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('obat.index') }}">
-                        <i class="ion ion-ios-color-palette text-primary"></i> {{ __('Komposisi Obat Warna') }}
-                    </a>
-                </li>
+                @if( auth()->user()->peran != 'pembeli' )
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('produk.index') }}">
+                            <i class="ion ion-ios-cube text-primary"></i> {{ __('Produk') }}
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('alat.index') }}">
-                        <i class="ion ion-md-build text-primary"></i> {{ __('Alat') }}
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('obat.index') }}">
+                            <i class="ion ion-ios-color-palette text-primary"></i> {{ __('Komposisi Obat Warna') }}
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('orders.index') }}">
-                        <i class="ion ion-md-paper text-primary"></i> {{ __('Pesanan') }}
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('alat.index') }}">
+                            <i class="ion ion-md-build text-primary"></i> {{ __('Alat') }}
+                        </a>
+                    </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('orders.index') }}">
+                            <i class="ion ion-md-paper text-primary"></i> {{ __('Pesanan') }}
+                        </a>
+                    </li>
+                @endif
+
+                @if( auth()->user()->peran != 'admin' )
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('order.self') }}">
+                            <i class="ion ion-md-paper text-primary"></i> {{ __('Pesanan') }}
+                        </a>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>

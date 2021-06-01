@@ -17,35 +17,37 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
-	Route::resource('user', 'UserController', ['except' => ['show']]);
+	Route::resource('user', 'UserController', ['except' => ['show']])->middleware('admin');
 	Route::resource('peran', PeranController::class)->only([
 		'index', 'edit'
-	]);
+	])->middleware('admin');
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 
-	Route::resource('produk', ProdukController::class)->except(['show', 'delete']);
+	Route::resource('produk', ProdukController::class)->except(['show', 'delete'])->middleware('admin');
 
 	Route::resource('obat', ObatController::class)->except(['show', 'delete'])->parameters([
 		'obat' => 'id'
-	]);
+	])->middleware('admin');
 
 	Route::resource('alat', AlatController::class)->except(['show', 'delete'])->parameters([
 		'alat' => 'id'
-	]);
+	])->middleware('admin');
 
 	Route::middleware(['auth'])->prefix('cart')->group(function(){
 		Route::get('/', 'CartController@index')->name('cart.index');
 		Route::get('/tambah-produk/{produk}', 'CartController@addCart')->name('cart.add');
 		Route::get('/update/{produk}/{color}', 'CartController@updateCart')->name('cart.update');
 		Route::get('/delete/{produk}/{color}', 'CartController@deleteCart')->name('cart.delete');
-		Route::get('/checkout', 'CartController@viewCheckout')->name('checkout')->middleware('auth');
+		Route::get('/checkout', 'CartController@viewCheckout')->name('checkout');
 	});
 
 
-	Route::resource('orders', 'OrderController')->middleware('auth');
+	Route::resource('orders', 'OrderController')->middleware(['auth']);
+
+	Route::get('/order', 'OrderController@orderSelf')->name('order.self');
+	Route::get('/order/{order}', 'OrderController@orderSelfView')->name('order.self.view');
 
 	Route::get('/order-success','OrderController@orderSuccess')->name('order.success');
 

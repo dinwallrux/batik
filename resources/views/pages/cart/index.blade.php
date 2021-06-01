@@ -5,7 +5,7 @@
     <div class="jumbotron color-grey-light mt-70">
         <div class="d-flex align-items-center h-100">
             <div class="container text-center py-5">
-                <h3 class="mb-0">Shopping cart</h3>
+                <h3 class="mb-0">Cart</h3>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
                     <div class="card wish-list mb-4">
                         <div class="card-body">
 
-                            <h5 class="mb-4">Cart (<span>{{ count($carts) }}</span> items)</h5>
+                            <h5 class="mb-4">Cart (<span>{{ count($carts) }}</span> Barang)</h5>
                             @foreach ($carts as $cart)
                             <div class="row mb-4">
                                 <div class="col-md-5 col-lg-3 col-xl-3">
@@ -62,7 +62,7 @@
                                                         <input class="quantity" min="0" name="quantity" value="{{ $cart['quantity'] }}" type="number">
                                                         <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
                                                     </div>
-                                                    <input type="submit" class="btn btn-success mt-2" value="Update">
+                                                    <input type="submit" class="btn btn-success mt-2 mb-2" value="Ubah">
                                                 </form>
                                             </div>
                                         </div>
@@ -109,7 +109,7 @@
                             </ul>
 
                             <a href="{{ route('checkout') }}" class="btn btn-primary btn-block waves-effect waves-light">
-                                go to checkout
+                                Lanjut ke checkout
                             </a>
 
                         </div>
