@@ -44,3 +44,18 @@
     object-fit: cover;
     margin-right: 20px;
 }
+
+.bg-custom {
+    background-image: url(../img/bg-login.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.bg-custom .bg-gradient-primary {
+    background: none !important;
+}
+
+.bg-custom .separator-bottom svg {
+    display: none;
+}

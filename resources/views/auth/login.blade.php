@@ -1,4 +1,4 @@
-@extends('layouts.app', ['class' => 'bg-default'])
+@extends('layouts.app', ['class' => 'bg-custom'])
 
 @section('content')
     @include('layouts.headers.guest')
@@ -7,7 +7,10 @@
         <div class="row justify-content-center">
             <div class="col-lg-5 col-md-7">
                 <div class="card bg-secondary shadow border-0">
-                    <div class="card-body px-lg-5 py-lg-5">
+                    <div class="card-body px-lg-5 py-lg-5 pt-1">
+                        <center>
+                            <img src="{{asset('argon')}}/img/brand/logo-batik.png" alt="Yanto Batik Logo" width="200">
+                        </center>
                         <form role="form" method="POST" action="{{ route('login') }}">
                             @csrf
 

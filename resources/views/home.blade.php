@@ -9,7 +9,7 @@
     <meta name="author" content="Template Mo">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
 
-    <title>Batik</title>
+    <title>Yanto Batik</title>
     <!-- Additional CSS Files -->
     <link rel="stylesheet" type="text/css" href="{{asset('home')}}/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{asset('home')}}/css/font-awesome.css">
@@ -39,7 +39,7 @@
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="#" class="logo">Batik</a>
+                        <a href="#" class="logo">Yanto Batik</a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
@@ -90,15 +90,15 @@
 
 
     <!-- ***** Welcome Area Start ***** -->
-    <div class="welcome-area" id="welcome">
+    <div class="welcome-area" id="welcome" style="background-image: url({{asset('img')}}/img-home.jpg);">
 
         <!-- ***** Header Text Start ***** -->
         <div class="header-text">
             <div class="container">
                 <div class="row">
                     <div class="left-text col-lg-6 col-md-6 col-sm-12 col-xs-12" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
-                        <h1>Art Factory is free <strong>for YOU</strong></h1>
-                        <p>This template is available for 100% free of charge on TemplateMo. Download, modify and use this for your business website.</p>
+                        <h1>Beragam keindahan batik <strong>Indonesia</strong></h1>
+                        <p>Cinta itu seperti batik yang dibuat dari banyak warna emosional, itu adalah kain yang pola dan kecerahannya mungkin berbeda-beda</p>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
                         <img src="{{asset('img')}}/img-home.jpg" class="rounded img-fluid d-block mx-auto" alt="First Vector Graphic">
@@ -145,7 +145,7 @@
                     </ul>
                 </div>
                 <div class="right-image col-lg-7 col-md-12 col-sm-12 mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
-                    <img src="{{asset('home')}}/images/right-image.png" class="rounded img-fluid d-block mx-auto" alt="App">
+                    <img src="{{asset('argon')}}/img/brand/logo-batik.png" class="rounded img-fluid d-block mx-auto" alt="App">
                 </div>
             </div>
         </div>
