@@ -101,7 +101,7 @@
                         <p>This template is available for 100% free of charge on TemplateMo. Download, modify and use this for your business website.</p>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
-                        <img src="{{asset('home')}}/images/slider-icon.png" class="rounded img-fluid d-block mx-auto" alt="First Vector Graphic">
+                        <img src="{{asset('img')}}/img-home.jpg" class="rounded img-fluid d-block mx-auto" alt="First Vector Graphic">
                     </div>
                 </div>
             </div>
