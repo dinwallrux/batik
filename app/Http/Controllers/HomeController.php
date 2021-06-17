@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ObatProduk;
 use App\Produk;
+use App\Profil;
 
 class HomeController extends Controller
 {
@@ -14,8 +15,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $profil = Profil::all()->first();
         $products = Produk::latest()->get();
-        return view('home', compact('products'));
+        return view('home', compact('products', 'profil'));
     }
 
     public function dashboard()

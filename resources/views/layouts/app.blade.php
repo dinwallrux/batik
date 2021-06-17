@@ -19,9 +19,9 @@
         <link rel="stylesheet" href="{{ asset('lib/bootstrap-select/bootstrap-select.min.css') }}">
         <!-- Argon CSS -->
         <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
-        {{-- Ionicons --}}
+        <!-- Ionicons -->
         <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
-        {{-- Custom Style --}}
+        <!-- Custom Style -->
         <link rel="stylesheet" href="{{ asset('css') }}/my-style.css">
         <link rel="stylesheet" href="{{ asset('css') }}/style.css">
     </head>

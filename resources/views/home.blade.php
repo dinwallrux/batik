@@ -16,6 +16,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('home')}}/css/templatemo-art-factory.css">
     <link rel="stylesheet" type="text/css" href="{{asset('home')}}/css/owl-carousel.css">
     <link rel="stylesheet" type="text/css" href="{{asset('css')}}/my-style.css">
+    <!-- Ionicons -->
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
 
     </head>
 
@@ -117,29 +119,35 @@
             <div class="row">
                 <div class="left-text col-lg-5 col-md-12 col-sm-12 mobile-bottom-fix">
                     <div class="left-heading">
-                        <h5>Curabitur aliquam eget tellus id porta</h5>
+                        <h5>Profil Perusahaan</h5>
                     </div>
-                    <p>Proin justo sapien, posuere suscipit tortor in, fermentum mattis elit. Aenean in feugiat purus.</p>
                     <ul>
                         <li>
-                            <img src="{{asset('home')}}/images/about-icon-01.png" alt="">
+                            <i class="ion ion-md-information-circle text-primary" style="font-size: 30px;"></i>
                             <div class="text">
-                                <h6>Nulla ultricies risus quis risus</h6>
-                                <p>You can use this website template for commercial or non-commercial purposes.</p>
+                                <h6>Tentang kami</h6>
+                                <p>{{ $profil->deskripsi }}</p>
                             </div>
                         </li>
                         <li>
-                            <img src="{{asset('home')}}/images/about-icon-02.png" alt="">
+                            <i class="ion ion-ios-flag text-primary" style="font-size: 30px;"></i>
                             <div class="text">
-                                <h6>Donec consequat commodo purus</h6>
-                                <p>You have no right to re-distribute this template as a downloadable ZIP file on any website.</p>
+                                <h6>Alamat</h6>
+                                <p>{{ $profil->alamat }}</p>
                             </div>
                         </li>
                         <li>
-                            <img src="{{asset('home')}}/images/about-icon-03.png" alt="">
+                            <i class="ion ion-ios-mail text-primary" style="font-size: 30px;"></i>
                             <div class="text">
-                                <h6>Sed placerat sollicitudin mauris</h6>
-                                <p>If you have any question or comment, please <a rel="nofollow" href="https://templatemo.com/contact">contact</a> us on TemplateMo.</p>
+                                <h6>Email</h6>
+                                <p>{{ $profil->email }}</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="ion ion-ios-call text-primary" style="font-size: 30px;"></i>
+                            <div class="text">
+                                <h6>Telepon</h6>
+                                <p>{{ $profil->telepon }}</p>
                             </div>
                         </li>
                     </ul>

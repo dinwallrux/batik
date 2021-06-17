@@ -82,6 +82,12 @@
 
                 @if( auth()->user()->peran != 'pembeli' )
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('profil.index') }}">
+                            <i class="ion ion-ios-business text-primary"></i> {{ __('Profil') }}
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('produk.index') }}">
                             <i class="ion ion-ios-cube text-primary"></i> {{ __('Produk') }}
                         </a>

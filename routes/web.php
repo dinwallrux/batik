@@ -21,6 +21,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('peran', PeranController::class)->only([
 		'index', 'edit'
 	])->middleware('admin');
+	Route::resource('profil', ProfilController::class)->only([
+		'index', 'edit', 'update'
+	])->middleware('admin');
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);

@@ -59,3 +59,7 @@
 .bg-custom .separator-bottom svg {
     display: none;
 }
+
+.label-title i{
+    font-size: 19px;
+}
