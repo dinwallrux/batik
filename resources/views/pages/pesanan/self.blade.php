@@ -63,6 +63,8 @@
                                             @endif
                                         </td>
                                         <td>Rp.@convert($data->grand_total)</td>
+
+                                        @if( auth()->user()->peran != 'pembeli' )
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
@@ -74,6 +76,7 @@
                                                 </div>
                                             </div>
                                         </td>
+                                        @endif
                                     </tr>
                                     @endforeach
                                 </tbody>
