@@ -56,7 +56,11 @@ class CartController extends Controller
     {
         $carts = session()->get('cart');
         if(!isset($carts)) {
-            return redirect()->back();
+            if ( auth()->user()->peran != 'admin' ) {
+                return redirect()->route('order.self');
+            } else {
+                return redirect()->route('orders.index');
+            }
         }
         if(count($carts) < 1) {
             return redirect()->route('home');
