@@ -50,7 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('orders', 'OrderController')->middleware(['auth']);
 
 	Route::get('/order', 'OrderController@orderSelf')->name('order.self');
-	Route::get('/order/{order}', 'OrderController@orderSelfView')->name('order.self.view');
+	Route::get('/order/{order}', 'OrderController@show')->name('order.self.view');
 
 	Route::get('/order-success','OrderController@orderSuccess')->name('order.success');
 
