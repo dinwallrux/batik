@@ -27,6 +27,9 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col">No</th>
+                                        <th scope="col">Campuran Obat 1</th>
+                                        <th scope="col">Campuran Obat 2</th>
+                                        <th scope="col">Campuran Obat 3</th>
                                         <th scope="col">Hasil</th>
                                         <th scope="col"></th>
                                     </tr>
@@ -35,6 +38,9 @@
                                     @foreach ($datas as $data)
                                     <tr>
                                         <td>{{ $number++ }}</td>
+                                        <td>{{ $data->campuran_1 }} ({{ $data->takaran_1 }})</td>
+                                        <td>{{ $data->campuran_2 }} ({{ $data->takaran_2 }})</td>
+                                        <td>{{ $data->campuran_3 }} ({{ $data->takaran_3 }})</td>
                                         <td>{{ $data->hasil }}</td>
                                         <td class="text-right">
                                             <div class="dropdown">

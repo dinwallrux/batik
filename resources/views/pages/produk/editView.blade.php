@@ -80,6 +80,19 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group{{ $errors->has('deskripsi') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-name">{{ __('Deskripsi') }}</label>
+                                    <textarea name="deskripsi" id="deskripsi" class="form-control form-control-alternative{{ $errors->has('deskripsi') ? ' is-invalid' : '' }}" placeholder="Deskripsi">
+                                        {{ $data->deskripsi }}
+                                    </textarea>
+
+                                    @if ($errors->has('deskripsi'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('deskripsi') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Ubah') }}</button>
                                 </div>

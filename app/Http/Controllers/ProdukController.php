@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Produk;
 use App\Obat;
 use Image;
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -65,7 +66,8 @@ class ProdukController extends Controller
         $data = [
             'nama' => $request->nama,
             'harga' => $harga,
-            'gambar' => $url
+            'gambar' => $url,
+            'deskripsi' => $request->deskripsi
         ];
 
         $validator = Validator::make($data, $rules);
@@ -142,7 +144,7 @@ class ProdukController extends Controller
             $path = Storage::url($fileName);
 
             // Delete old image
-            Storage::delete($oldPhoto);
+            File::delete(public_path($oldPhoto));
         } else{
             $path = $oldPhoto;
         }
@@ -152,7 +154,8 @@ class ProdukController extends Controller
         $data = [
             'nama' => $request->nama,
             'harga' => $harga,
-            'gambar' => $path
+            'gambar' => $path,
+            'deskripsi' => $request->deskripsi
         ];
 
         $validator = Validator::make($data, $rules);

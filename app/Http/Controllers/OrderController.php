@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\Mail\CheckoutEmail;
-use App\OrderProduk;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Darryldecode\Cart\Cart;
+use Illuminate\Support\Facades\Storage;
+use File;
+use Image;
 
 class OrderController extends Controller
 {
@@ -175,5 +176,71 @@ class OrderController extends Controller
         $number = 1;
         $datas = Order::latest()->where('user_id', Auth::user()->id)->get();
         return view('pages.pesanan.self', compact('number', 'datas'));
+    }
+
+    public function addBuktiPembayaran(Request $request, Order $order)
+    {
+        $rules = array();
+        
+        // Ngambil gambar lama
+        $oldPhoto = $order->getOriginal('bukti_pembayaran');
+
+        // Check apakah ada gambar baru yg mau di update
+        if($request->hasFile('bukti_pembayaran')){
+            $image      = $request->file('bukti_pembayaran');
+            $fileName   = time() . '.' . $image->getClientOriginalExtension();
+
+            $img = Image::make($image);
+            $img->resize(300, 300, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $img->stream(); // <-- Key point
+
+            Storage::disk('local')->put('public'.'/'.$fileName, $img);
+            $path = Storage::url($fileName);
+
+            // Delete old image
+            File::delete(public_path($oldPhoto));
+        } else{
+            $path = $oldPhoto;
+        }
+
+        $data = [
+            'bukti_pembayaran' => $path,
+            'status' => 'processing'
+        ];
+
+        $validator = Validator::make($data, $rules);
+        if($validator->fails()){
+            $errors = $validator->errors();
+
+            if(auth()->user()->peran != 'admin') {
+                return redirect()->route('order.self')->withErrors($errors)->withInput($request->all());
+            } else {
+                return redirect()->route('orders.self')->withErrors($errors)->withInput($request->all());
+            }
+        } else{
+            $order->update($data);
+
+            if(auth()->user()->peran != 'admin') {
+                return redirect()->route('order.self')
+                    ->with('success', 'Bukti pembayaran berhasil ditambahkan.');
+            } else {
+                return redirect()->route('orders.index')
+                    ->with('success', 'Bukti pembayaran berhasil ditambahkan.');
+            }
+
+        }
+    }
+
+    public function downloadBuktiPembayaran(Order $order)
+    {
+        $bukti_pembayaran = $order->getOriginal('bukti_pembayaran');
+        // Get only filename without /storage/
+        $filename = basename($bukti_pembayaran);
+
+        // Download file
+        // return response()->download($filename);
+        return Storage::disk('public')->download($filename);
     }
 }

@@ -35,7 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
 	])->middleware('admin');
 
 	Route::resource('alat', AlatController::class)->except(['show', 'delete'])->parameters([
-		'alat' => 'id'
+		'alat' => 'alat'
 	])->middleware('admin');
 
 	Route::middleware(['auth'])->prefix('cart')->group(function(){
@@ -51,6 +51,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/order', 'OrderController@orderSelf')->name('order.self');
 	Route::get('/order/{order}', 'OrderController@show')->name('order.self.view');
+	Route::post('/order/{order}/bukti-pembayaran', 'OrderController@addBuktiPembayaran')->name('bukti_pembayaran');
+	Route::get('/order/{order}/bukti-pembayaran/download', 'OrderController@downloadBuktiPembayaran')->name('bukti_pembayaran.download');
 
 	Route::get('/order-success','OrderController@orderSuccess')->name('order.success');
 

@@ -25,6 +25,7 @@ class Order extends Model
         'shipping_phone',
         'shipping_email',
         'notes',
+        'bukti_pembayaran'
     ];
 
     public function getCreatedAtAttribute($date)

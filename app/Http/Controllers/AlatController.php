@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Image;
+use File;
 use App\Alat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -90,9 +91,9 @@ class AlatController extends Controller
      * @param  \App\Alat  $alat
      * @return \Illuminate\Http\Response
      */
-    public function edit(Alat $alat)
+    public function edit($id)
     {
-        $data = $alat->get()->first();
+        $data = Alat::where('id', $id)->get()->first();
         return view('pages.alat.editView', compact('data'));
     }
 
@@ -103,7 +104,7 @@ class AlatController extends Controller
      * @param  \App\Alat  $alat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Alat $alat)
+    public function update(Request $request)
     {
         $rules = array(
             'nama' => 'required',
@@ -127,7 +128,7 @@ class AlatController extends Controller
             $path = Storage::url($fileName);
 
             // Delete old image
-            Storage::delete($oldPhoto);
+            File::delete(public_path($oldPhoto));
         } else{
             $path = $oldPhoto;
         }

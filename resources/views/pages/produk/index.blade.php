@@ -28,9 +28,10 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Nama</th>
-                                        <th scope="col">Harga</th>
+                                        <th scope="col">Harga <span style="text-transform: capitalize">(Rp)</span></th>
                                         <th scope="col">Gambar</th>
                                         <th scope="col">Warna</th>
+                                        <th scope="col">Deskripsi</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
@@ -39,7 +40,7 @@
                                     <tr>
                                         <td>{{ $number++ }}</td>
                                         <td>{{$data->nama}}</td>
-                                        <td>{{$data->harga}}</td>
+                                        <td>Rp.@convert($data->harga)</td>
                                         <td>
                                             <img src="{{asset($data->gambar)}}" alt="">
                                         </td>
@@ -47,6 +48,9 @@
                                             @foreach ($data->obat as $color)
                                                 {{ $color->hasil }},
                                             @endforeach
+                                        </td>
+                                        <td>
+                                            {{ $data->deskripsi }}
                                         </td>
                                         <td class="text-right">
                                             <div class="dropdown">

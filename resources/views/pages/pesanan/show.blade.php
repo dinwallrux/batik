@@ -58,6 +58,40 @@
                                 @endforeach
                             </tbody>
                         </table>
+
+                        <form method="post" class="form-bukti-pembayaran" action="{{ route('bukti_pembayaran', $orderDetail->id) }}" enctype="multipart/form-data">
+                            @csrf
+
+                            <div class="form-gambar form-group{{ $errors->has('bukti_pembayaran') ? ' has-danger' : '' }}">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <label class="form-control-label mb-0">{{ __('Bukti Pembayaran') }}</label>
+                                    @if( auth()->user()->peran != 'pembeli' )
+                                        <a href="{{ route('bukti_pembayaran.download', $orderDetail->id) }}" class="btn btn-primary btn-sm">
+                                            Download Bukti Pembayaran
+                                        </a>
+                                    @endif
+                                </div>
+                                <input type="file" onchange="myEnvironment.imgPreview('#input_produk', '#bukti_pembayaran_preview')" name="bukti_pembayaran" id="input_produk" class="hide form-control form-control-alternative{{ $errors->has('bukti_pembayaran') ? ' is-invalid' : '' }}" placeholder="{{ __('Bukti Pembayaran') }}">
+                                <label for="input_produk" class="label-file form-control form-control-alternative{{ $errors->has('bukti_pembayaran') ? ' is-invalid' : '' }}">
+                                    @if ($orderDetail->bukti_pembayaran == null)
+                                        <i class="ion ion-md-cloud-upload"></i>
+                                    @endif
+                                    <img src="{{ asset($orderDetail->bukti_pembayaran) }}" id="bukti_pembayaran_preview" alt="">
+                                </label>
+
+                                @if ($errors->has('gambar'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('gambar') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success mt-4">{{ __('Kirim') }}</button>
+                            </div>
+                            
+                        </form>
+
                     </div>
                 </div>
             </div>

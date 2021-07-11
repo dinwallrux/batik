@@ -43,15 +43,20 @@
                     </tfoot>
                 </table>
 
-                <h6>Alamat Dikirim</h6>
+                <h4>Alamat Dikirim</h4>
                 <p>{{ $produkOrdered['shipping_address'] }}</p>
                 <p>{{ $produkOrdered['shipping_city'] }}</p>
                 <p>{{ $produkOrdered['shipping_state'] }}</p>
                 <p>{{ $produkOrdered['shipping_zipcode'] }}</p>
 
-                <h6>Informasi Customer</h6>
+                <h4>Informasi Customer</h4>
                 <p>{{ $produkOrdered['shipping_phone'] }}</p>
                 <p>{{ $produkOrdered['shipping_email'] }}</p>
+
+                <h4>Informasi No Rekening Yanto Batik</h4>
+                <p>Bank: BCA</p>
+                <p>Atas Nama: Yanto Batik</p>
+                <p>No Rekening: 123456789</p>
             </div>
         </div>
     </div>
