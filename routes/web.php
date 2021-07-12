@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/detail/{produk}', 'ProdukController@produkDetail')->name('produk.detail');
 
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {

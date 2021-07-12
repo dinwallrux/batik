@@ -181,4 +181,10 @@ class ProdukController extends Controller
     {
         //
     }
+
+    public function produkDetail($id)
+    {
+        $products = Produk::where('id', $id)->latest()->get();
+        return view('produkDetail', compact('products'));
+    }
 }

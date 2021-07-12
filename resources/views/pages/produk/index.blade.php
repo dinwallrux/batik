@@ -50,7 +50,7 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            {{ $data->deskripsi }}
+                                            {{ Str::limit($data->deskripsi, 50) }}
                                         </td>
                                         <td class="text-right">
                                             <div class="dropdown">
