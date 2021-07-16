@@ -126,9 +126,12 @@
                                             <th class="pl-0 w-25" scope="row"><strong>Jenis</strong></th>
                                             <td>
                                                 <select name="jenis_kain" class="form-control mb-2">
-                                                    <option value="Katun">Katun</option>
-                                                    <option value="Polyester">Polyester</option>
-                                                    <option value="Kanvas">Kanvas</option>
+                                                    <option value="Rayon">Rayon</option>
+                                                    <option value="Rayon crinkle">Rayon crinkle</option>
+                                                    <option value="Rayon voile">Rayon voile</option>
+                                                    <option value="Blacu">Blacu</option>
+                                                    <option value="Katun prima">Katun prima</option>
+                                                    <option value="Katun primisima">Katun primisima</option>
                                                 </select>
                                             </td>
                                         </tr>
