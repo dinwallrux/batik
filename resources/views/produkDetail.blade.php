@@ -97,15 +97,17 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="row">
-                                            @foreach (json_decode($product->foto) as $foto)
-                                                <div class="col-3">
-                                                    <div class="view overlay rounded z-depth-1 gallery-item">
-                                                        <img src="{{asset($foto)}}"
-                                                            class="img-fluid">
-                                                        <div class="mask rgba-white-slight"></div>
+                                            @if (json_decode($product->foto) !== null)
+                                                @foreach (json_decode($product->foto) as $foto)
+                                                    <div class="col-3">
+                                                        <div class="view overlay rounded z-depth-1 gallery-item">
+                                                            <img src="{{asset($foto)}}"
+                                                                class="img-fluid">
+                                                            <div class="mask rgba-white-slight"></div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            @endforeach
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
