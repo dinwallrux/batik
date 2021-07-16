@@ -35,6 +35,8 @@
                             <thead>
                                 <tr>
                                     <th>Nama Produk</th>
+                                    <th>Warna</th>
+                                    <th>Jenis Kain</th>
                                     <th>Jumlah</th>
                                     <th>Total</th>
                                 </tr>
@@ -45,14 +47,20 @@
                                     <td>
                                         <div class="product">
                                             <img src="{{asset($product->gambar)}}" alt="">
-                                            <p>{{ $product->nama }} - {{ App\Obat::where('id', $product->pivot->obat_id)->get()->first()['hasil'] }}</p>
+                                            <p>{{ $product->nama }}</p>
                                         </div>
                                     </td>
                                     <td>
-                                        {{ $product->pivot->quantity }}
+                                        <p>{{ App\Obat::where('id', $product->pivot->obat_id)->get()->first()['hasil'] }}</p>
                                     </td>
                                     <td>
-                                        Rp.@convert($product->pivot->price * $product->pivot->quantity)
+                                        <p>{{ $product->pivot->jenis_kain }}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{ $product->pivot->quantity }}</p>
+                                    </td>
+                                    <td>
+                                        <p>Rp.@convert($product->pivot->price * $product->pivot->quantity)</p>
                                     </td>
                                 </tr>
                                 @endforeach

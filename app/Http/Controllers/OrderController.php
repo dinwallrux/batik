@@ -85,7 +85,15 @@ class OrderController extends Controller
 
             $carts = session()->get('cart');
             foreach($carts as $cart) {
-                $order->items()->attach($cart['id'], ['price'=> $cart['price'], 'quantity'=> $cart['quantity'], 'obat_id' => $cart['color'] ]);
+                $order->items()->attach(
+                    $cart['id'], 
+                    [
+                        'price'=> $cart['price'], 
+                        'quantity'=> $cart['quantity'], 
+                        'obat_id' => $cart['color'],
+                        'jenis_kain' => $cart['jenis_kain'],
+                    ]
+                );
             }
 
             // Empty cart

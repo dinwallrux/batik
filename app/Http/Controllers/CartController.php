@@ -20,9 +20,10 @@ class CartController extends Controller
                     'id' => $produk->id,
                     'name' => $produk->nama,
                     'price' => $produk->harga,
-                    'quantity' => 1,
-                    'image' => $produk->gambar,
+                    'quantity' => $request->quantity,
+                    'image' => json_decode($produk->foto)[0],
                     'color' => $request->color,
+                    'jenis_kain' => $request->jenis_kain
                 ]
             ];
 
@@ -43,9 +44,10 @@ class CartController extends Controller
             'id' => $produk->id,
             'name' => $produk->nama,
             'price' => $produk->harga,
-            'quantity' => 1,
-            'image' => $produk->gambar,
+            'quantity' => $request->quantity,
+            'image' => json_decode($produk->foto)[0],
             'color' => $request->color,
+            'jenis_kain' => $request->jenis_kain
         ];
         session()->put('cart', $cart);
 //        return redirect()->back()->with('success', 'Product added to cart successfully!');

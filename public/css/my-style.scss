@@ -21,6 +21,28 @@
             font-size: 80px;
         }
     }
+    label#produk_preview {
+        img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            margin: 5px;
+        }
+    }
+    .list-file {
+        width: 100%;
+        height: auto;
+        i{
+            font-size: 20px;
+            margin-right: 5px;
+        }
+        img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin: 5px;
+        }
+    }
 }
 
 // Cart page

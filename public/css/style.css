@@ -33,6 +33,10 @@
     vertical-align: middle;
 }
 
+.table-detail-order p {
+    margin: 0;
+}
+
 .table-detail-order .product {
     display: flex;
     align-items: center;

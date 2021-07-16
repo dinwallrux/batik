@@ -48,10 +48,16 @@
                                         <div class="d-flex justify-content-between">
                                             <div>
                                                 <h5>{{ $cart['name'] }}</h5>
+                                                <div class="form-group row mb-0">
+                                                    <div class="col-lg-12">
+                                                        <label class="form-control-label" for="input-harga">{{ __('Warna :') }}</label>
+                                                        {{ App\Obat::where('id', $cart['color'])->get()->first()->hasil }}
+                                                    </div>
+                                                </div>
                                                 <div class="form-group row">
                                                     <div class="col-lg-12">
-                                                        <label class="form-control-label" for="input-harga">{{ __('Warna') }}</label>
-                                                        {{ App\Obat::where('id', $cart['color'])->get()->first()->hasil }}
+                                                        <label class="form-control-label" for="input-harga">{{ __('Jenis Kain :') }}</label>
+                                                        {{ isset($cart['jenis_kain']) ? $cart['jenis_kain'] : "" }}
                                                     </div>
                                                 </div>
                                             </div>

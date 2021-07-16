@@ -49,17 +49,26 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="form-gambar form-group{{ $errors->has('gambar') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label">{{ __('Gambar') }}</label>
-                                    <input type="file" onchange="myEnvironment.imgPreview('#input_produk', '#produk_preview')" name="gambar" id="input_produk" class="hide form-control form-control-alternative{{ $errors->has('gambar') ? ' is-invalid' : '' }}" placeholder="{{ __('Gambar') }}">
-                                    <label for="input_produk" class="label-file form-control form-control-alternative{{ $errors->has('gambar') ? ' is-invalid' : '' }}">
-                                        <i class="ion ion-md-cloud-upload hide"></i>
-                                        <img src="{{ asset($data->gambar) }}" id="produk_preview" alt="">
+                                <div class="form-gambar form-group{{ $errors->has('foto') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label">{{ __('Foto') }}</label>
+                                    <input type="file" onchange="myEnvironment.multipleImgPreview('#input_produk', '.list-file')" name="foto[]" id="input_produk" class="hide form-control form-control-alternative{{ $errors->has('foto') ? ' is-invalid' : '' }}" placeholder="{{ __('Foto') }}" required multiple>
+                                    <label for="input_produk" id="produk_preview" class="label-file form-control form-control-alternative{{ $errors->has('foto') ? ' is-invalid' : '' }}">
+                                        <div class="btn btn-primary btn-sm m-2 d-inline-flex align-items-center">
+                                            <i class="ion ion-md-images" style="font-size: 20px; margin-right: 5px;"></i>
+                                            <span>Tambah Foto</span>
+                                        </div>
                                     </label>
+                                    <div class="list-file d-flex">
+                                        @if (json_decode($data->foto) !== null)
+                                            @foreach (json_decode($data->foto) as $foto)
+                                                <img src="{{ asset( $foto ) }}" alt="">
+                                            @endforeach
+                                        @endif
+                                    </div>
 
-                                    @if ($errors->has('gambar'))
+                                    @if ($errors->has('foto'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('gambar') }}</strong>
+                                            <strong>{{ $errors->first('foto') }}</strong>
                                         </span>
                                     @endif
                                 </div>
@@ -82,9 +91,7 @@
 
                                 <div class="form-group{{ $errors->has('deskripsi') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-name">{{ __('Deskripsi') }}</label>
-                                    <textarea name="deskripsi" id="deskripsi" class="form-control form-control-alternative{{ $errors->has('deskripsi') ? ' is-invalid' : '' }}" placeholder="Deskripsi">
-                                        {{ $data->deskripsi }}
-                                    </textarea>
+                                    <textarea name="deskripsi" id="deskripsi" class="form-control form-control-alternative{{ $errors->has('deskripsi') ? ' is-invalid' : '' }}" placeholder="Deskripsi">{{ $data->deskripsi }}</textarea>
 
                                     @if ($errors->has('deskripsi'))
                                         <span class="invalid-feedback" role="alert">

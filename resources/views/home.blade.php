@@ -92,7 +92,7 @@
 
 
     <!-- ***** Welcome Area Start ***** -->
-    <div class="welcome-area" id="welcome" style="background-image: url({{asset('img')}}/img-home.jpg);">
+    <div class="welcome-area" id="welcome" style="background-image: url({{asset('img')}}/bg-login.jpeg);">
 
         <!-- ***** Header Text Start ***** -->
         <div class="header-text">
@@ -170,26 +170,21 @@
             </div>
             <div class="row pt-5">
                 @foreach ($products as $product)
-                <form class="col-lg-4 text-center pb-4 mb-4" action="{{ route('cart.add', [$product->id]) }}">
-                    @csrf
+                <div class="col-lg-4 text-center pb-4 mb-4">
                     <div class="service-item">
                         <div class="product-image">
-                            <img src="{{asset($product->gambar)}}" alt="">
+                            <img src="{{ asset( json_decode($product->foto)[0] ) }}" alt="">
                         </div>
                         <div class="title-price">
                             <h5 class="service-title">{{$product->nama}}</h5>
                             <p>Rp.@convert($product->harga)</p>
                         </div>
                         <div class="options">
-                            <select name="color" class="form-control mb-2">
-                                @foreach ($product->obat as $color)
-                                <option value="{{ $color->id }}">{{ $color->hasil }}</option>
-                                @endforeach
-                            </select>
+                            <p style="text-align: left;">{{ Str::limit($product->deskripsi, 200) }}</p>
                         </div>
-                        <button class="btn btn-primary main-button">Beli</button>
+                        <a href="{{ route('produk.detail', $product->id) }}" class="btn btn-primary main-button">Lihat Produk</a>
                     </div>
-                </form>
+                </div>
                 @endforeach
             </div>
         </div>

@@ -6,6 +6,7 @@ use App\Produk;
 use App\Obat;
 use Image;
 use File;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -46,27 +47,32 @@ class ProdukController extends Controller
         $rules = array(
             'nama' => 'required',
             'harga' => 'required',
-            'gambar' => 'required',
+            'foto' => 'required',
         );
 
-        $image      = $request->file('gambar');
-        $fileName   = time() . '.' . $image->getClientOriginalExtension();
+        $files = [];
+        $image = $request->file('foto');
+        foreach ($image as $key => $value) {
+            $fileName   = Str::random(5) . time() . '.' . $value->getClientOriginalExtension();
+            $img = Image::make($value);
+            $img->resize(300, 300, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $img->stream(); // <-- Key point
 
-        $img = Image::make($image);
-        $img->resize(300, 300, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-        $img->stream(); // <-- Key point
+            Storage::disk('local')->put('public'.'/'.$fileName, $img);
+            $url = Storage::url($fileName);
 
-        Storage::disk('local')->put('public'.'/'.$fileName, $img);
-        $url = Storage::url($fileName);
+            $files[] = $url;
+        }
 
+        // Replace format number
         $harga = str_replace('.', '', $request->harga);
 
         $data = [
             'nama' => $request->nama,
             'harga' => $harga,
-            'gambar' => $url,
+            'foto' => json_encode($files),
             'deskripsi' => $request->deskripsi
         ];
 
@@ -123,30 +129,38 @@ class ProdukController extends Controller
         $rules = array(
             'nama' => 'required',
             'harga' => 'required',
-            'gambar' => 'required',
+            'foto' => 'required',
         );
 
         // Ngambil gambar lama
-        $oldPhoto = $produk->getOriginal('gambar');
+        $oldPhoto = $produk->getOriginal('foto');
 
         // Check apakah ada gambar baru yg mau di update
-        if($request->hasFile('gambar')){
-            $image      = $request->file('gambar');
-            $fileName   = time() . '.' . $image->getClientOriginalExtension();
+        if($request->hasFile('foto')){
+            $files = [];
+            $image = $request->file('foto');
+            foreach ($image as $key => $value) {
+                $fileName   = Str::random(5) . time() . '.' . $value->getClientOriginalExtension();
+                $img = Image::make($value);
+                $img->resize(300, 300, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+                $img->stream(); // <-- Key point
 
-            $img = Image::make($image);
-            $img->resize(300, 300, function ($constraint) {
-                $constraint->aspectRatio();
-            });
-            $img->stream(); // <-- Key point
+                Storage::disk('local')->put('public'.'/'.$fileName, $img);
+                $url = Storage::url($fileName);
 
-            Storage::disk('local')->put('public'.'/'.$fileName, $img);
-            $path = Storage::url($fileName);
-
+                $files[] = $url;
+            }
+            
             // Delete old image
-            File::delete(public_path($oldPhoto));
+            if($oldPhoto != null) {
+                foreach (json_decode($oldPhoto) as $key => $value) {
+                    File::delete(public_path($value));
+                }
+            }
         } else{
-            $path = $oldPhoto;
+            $files = $oldPhoto;
         }
 
         $harga = str_replace('.', '', $request->harga);
@@ -154,7 +168,7 @@ class ProdukController extends Controller
         $data = [
             'nama' => $request->nama,
             'harga' => $harga,
-            'gambar' => $path,
+            'foto' => json_encode($files),
             'deskripsi' => $request->deskripsi
         ];
 
