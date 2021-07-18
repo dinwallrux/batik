@@ -40,7 +40,7 @@
 
                                 <div class="form-gambar form-group{{ $errors->has('gambar') ? ' has-danger' : '' }}">
                                     <label class="form-control-label">{{ __('Gambar') }}</label>
-                                    <input type="file" onchange="myEnvironment.imgPreview('#input_produk', '#produk_preview')" name="gambar" id="input_produk" class="hide form-control form-control-alternative{{ $errors->has('gambar') ? ' is-invalid' : '' }}" placeholder="{{ __('Gambar') }}" required>
+                                    <input type="file" onchange="myEnvironment.imgPreview('#input_produk', '#produk_preview')" name="gambar" id="input_produk" class="hide form-control form-control-alternative{{ $errors->has('gambar') ? ' is-invalid' : '' }}" placeholder="{{ __('Gambar') }}">
                                     <label for="input_produk" class="p-4 label-file form-control form-control-alternative{{ $errors->has('gambar') ? ' is-invalid' : '' }}">
                                         @if ($data->gambar == null)
                                             <i class="ion ion-md-cloud-upload"></i>

@@ -39,7 +39,7 @@
                                         <td>{{ $number++ }}</td>
                                         <td>{{ $data->nama }}</td>
                                         <td>
-                                            <img src="{{asset($data->gambar)}}" alt="">
+                                            <img style="width: 100px;" src="{{asset($data->gambar)}}" alt="">
                                         </td>
                                         <td>{{ $data->deskripsi }}</td>
                                         <td class="text-right">

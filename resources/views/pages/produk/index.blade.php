@@ -42,7 +42,7 @@
                                         <td>{{$data->nama}}</td>
                                         <td>Rp.@convert($data->harga)</td>
                                         <td>
-                                            <img src="{{ asset( json_decode($data->foto)[0] ) }}" alt="">
+                                            <img style="width: 100px;" src="{{ asset( json_decode($data->foto)[0] ) }}" alt="">
                                         </td>
                                         <td>
                                             @foreach ($data->obat as $color)

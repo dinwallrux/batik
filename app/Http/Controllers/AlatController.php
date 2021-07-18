@@ -104,14 +104,14 @@ class AlatController extends Controller
      * @param  \App\Alat  $alat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Alat $alat, Request $request)
     {
         $rules = array(
             'nama' => 'required',
         );
 
         // Ngambil gambar lama
-        $oldPhoto = Alat::where('id', $request->id)->first()->getOriginal('gambar');
+        $oldPhoto = $alat->getOriginal('gambar');
 
         // Check apakah ada gambar baru yg mau di update
         if($request->hasFile('gambar')){
@@ -144,7 +144,7 @@ class AlatController extends Controller
             $errors = $validator->errors();
             return redirect()->route('alat.edit')->withErrors($errors)->withInput($request->all());
         } else{
-            Alat::where('id', $request->id)->update($data);
+            $alat->update($data);
             return redirect()->route('alat.index')
                 ->with('success', 'Alat Baku berhasil diupdate.');
         }
