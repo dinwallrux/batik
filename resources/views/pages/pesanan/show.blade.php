@@ -37,6 +37,7 @@
                                     <th>Nama Produk</th>
                                     <th>Warna</th>
                                     <th>Jenis Kain</th>
+                                    <th>Panjang</th>
                                     <th>Jumlah</th>
                                     <th>Total</th>
                                 </tr>
@@ -46,7 +47,7 @@
                                 <tr>
                                     <td>
                                         <div class="product">
-                                            <img src="{{asset($product->gambar)}}" alt="">
+                                            <img src="{{ asset(json_decode($product->foto)[0]) }}" alt="">
                                             <p>{{ $product->nama }}</p>
                                         </div>
                                     </td>
@@ -55,6 +56,9 @@
                                     </td>
                                     <td>
                                         <p>{{ $product->pivot->jenis_kain }}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{ $product->pivot->panjang }} Meter</p>
                                     </td>
                                     <td>
                                         <p>{{ $product->pivot->quantity }}</p>
@@ -79,25 +83,33 @@
                                         </a>
                                     @endif
                                 </div>
-                                <input type="file" onchange="myEnvironment.imgPreview('#input_produk', '#bukti_pembayaran_preview')" name="bukti_pembayaran" id="input_produk" class="hide form-control form-control-alternative{{ $errors->has('bukti_pembayaran') ? ' is-invalid' : '' }}" placeholder="{{ __('Bukti Pembayaran') }}">
-                                <label for="input_produk" class="label-file form-control form-control-alternative{{ $errors->has('bukti_pembayaran') ? ' is-invalid' : '' }}">
-                                    @if ($orderDetail->bukti_pembayaran == null)
-                                        <i class="ion ion-md-cloud-upload"></i>
-                                    @endif
-                                    <img src="{{ asset($orderDetail->bukti_pembayaran) }}" id="bukti_pembayaran_preview" alt="">
-                                </label>
 
-                                @if ($errors->has('gambar'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('gambar') }}</strong>
-                                    </span>
+                                <div class="label-file form-control form-control-alternative">
+                                    <img src="{{ asset($orderDetail->bukti_pembayaran) }}" alt="">
+                                </div>
+
+                                @if( auth()->user()->peran != 'admin' )
+                                    <input type="file" onchange="myEnvironment.imgPreview('#input_produk', '#bukti_pembayaran_preview')" name="bukti_pembayaran" id="input_produk" class="hide form-control form-control-alternative{{ $errors->has('bukti_pembayaran') ? ' is-invalid' : '' }}" placeholder="{{ __('Bukti Pembayaran') }}">
+                                    <label for="input_produk" class="label-file form-control form-control-alternative{{ $errors->has('bukti_pembayaran') ? ' is-invalid' : '' }}">
+                                        @if ($orderDetail->bukti_pembayaran == null)
+                                            <i class="ion ion-md-cloud-upload"></i>
+                                        @endif
+                                        <img src="{{ asset($orderDetail->bukti_pembayaran) }}" id="bukti_pembayaran_preview" alt="">
+                                    </label>
+
+                                    @if ($errors->has('gambar'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('gambar') }}</strong>
+                                        </span>
+                                    @endif
                                 @endif
                             </div>
 
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-success mt-4">{{ __('Kirim') }}</button>
-                            </div>
-                            
+                            @if( auth()->user()->peran != 'admin' )
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-success mt-4">{{ __('Kirim') }}</button>
+                                </div>
+                            @endif
                         </form>
 
                     </div>

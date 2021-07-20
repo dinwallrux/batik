@@ -7,7 +7,7 @@
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Argon Dashboard') }}</title>
+        <title>Yanto Batik</title>
         <!-- Favicon -->
         <link href="{{ asset('argon') }}/img/brand/favicon-batik.png" rel="icon" type="image/png">
         <!-- Fonts -->

@@ -147,6 +147,12 @@
                                                 </select>
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <th class="pl-0 w-25" scope="row"><strong>Panjang / Meter</strong></th>
+                                            <td>
+                                                <input type="number" name="panjang" class="form-control mb-2" value="1"/>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
