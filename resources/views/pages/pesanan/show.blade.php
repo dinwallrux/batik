@@ -38,7 +38,6 @@
                                     <th>Warna</th>
                                     <th>Jenis Kain</th>
                                     <th>Panjang</th>
-                                    <th>Jumlah</th>
                                     <th>Total</th>
                                 </tr>
                             </thead>
@@ -58,10 +57,7 @@
                                         <p>{{ $product->pivot->jenis_kain }}</p>
                                     </td>
                                     <td>
-                                        <p>{{ $product->pivot->panjang }} Meter</p>
-                                    </td>
-                                    <td>
-                                        <p>{{ $product->pivot->quantity }}</p>
+                                        <p>{{ $product->pivot->quantity }} Meter</p>
                                     </td>
                                     <td>
                                         <p>Rp.@convert($product->pivot->price * $product->pivot->quantity)</p>

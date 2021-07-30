@@ -63,10 +63,14 @@
                                             </div>
                                             <div>
                                                 <form action="{{ route('cart.update', [$cart['id'], $cart['color']]) }}">
-                                                    <div class="def-number-input number-input safari_only mb-0 w-100">
-                                                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
-                                                        <input class="quantity" min="0" name="quantity" value="{{ $cart['quantity'] }}" type="number">
-                                                        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                                                    <p class="mb-1">Panjang</p>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="def-number-input number-input safari_only mb-0 w-100">
+                                                            <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+                                                            <input class="quantity" min="0" name="quantity" value="{{ $cart['quantity'] }}" type="number">
+                                                            <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                                                        </div>
+                                                        <span class="ml-2"><b>Meter</b></span>
                                                     </div>
                                                     <input type="submit" class="btn btn-success mt-2 mb-2" value="Ubah">
                                                 </form>

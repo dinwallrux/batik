@@ -24,7 +24,6 @@ class CartController extends Controller
                     'image' => json_decode($produk->foto)[0],
                     'color' => $request->color,
                     'jenis_kain' => $request->jenis_kain,
-                    'panjang' => $request->panjang,
                 ]
             ];
 
@@ -49,7 +48,6 @@ class CartController extends Controller
             'image' => json_decode($produk->foto)[0],
             'color' => $request->color,
             'jenis_kain' => $request->jenis_kain,
-            'panjang' => $request->panjang
         ];
         session()->put('cart', $cart);
 //        return redirect()->back()->with('success', 'Product added to cart successfully!');

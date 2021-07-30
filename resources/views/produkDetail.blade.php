@@ -147,12 +147,6 @@
                                                 </select>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <th class="pl-0 w-25" scope="row"><strong>Panjang / Meter</strong></th>
-                                            <td>
-                                                <input type="number" name="panjang" class="form-control mb-2" value="1"/>
-                                            </td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -161,20 +155,23 @@
                                 <table class="table table-sm table-borderless">
                                     <tbody>
                                         <tr>
-                                            <td class="pl-0 pb-0 w-25">Jumlah</td>
+                                            <td class="pl-0 pb-0 w-25"><b>Panjang</b></td>
                                         </tr>
                                         <tr>
                                             <td class="pl-0">
-                                                <div class="def-number-input number-input safari_only mb-0">
-                                                    <button
-                                                        type="button"
-                                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                                                        class="minus"></button>
-                                                    <input class="quantity" min="0" name="quantity" value="1" type="number">
-                                                    <button
-                                                        type="button"
-                                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                                                        class="plus"></button>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="def-number-input number-input safari_only mb-0">
+                                                        <button
+                                                            type="button"
+                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                                            class="minus"></button>
+                                                        <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                                        <button
+                                                            type="button"
+                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                                            class="plus"></button>
+                                                    </div>
+                                                    <span class="ml-2"><b>Meter</b></span>
                                                 </div>
                                             </td>
                                         </tr>

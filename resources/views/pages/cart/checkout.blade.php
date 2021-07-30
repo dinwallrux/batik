@@ -138,7 +138,7 @@
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
                             <h6 class="my-0">{{ $cart['name'] }}</h6>
-                            <small class="text-muted">Qty: {{ $cart['quantity'] }}</small>
+                            <small class="text-muted">Panjang: {{ $cart['quantity'] }} Meter</small>
                         </div>
                         <span class="text-muted">Rp.@convert($cart['price'] * $cart['quantity'])</span>
                     </li>

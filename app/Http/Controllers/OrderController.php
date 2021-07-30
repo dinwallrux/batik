@@ -92,7 +92,6 @@ class OrderController extends Controller
                         'quantity'=> $cart['quantity'], 
                         'obat_id' => $cart['color'],
                         'jenis_kain' => $cart['jenis_kain'],
-                        'panjang' => $cart['panjang'],
                     ]
                 );
             }
