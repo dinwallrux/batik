@@ -87,6 +87,11 @@
                                     @endif
                                 </div>
 
+                                <div class="custom-control custom-checkbox mb-3 d-flex align-items-center">
+                                    <input class="custom-control-input" id="tampilkan" name="tampilkan" type="checkbox">
+                                    <label class="custom-control-label" for="tampilkan">Tampilkan</label>
+                                </div>
+
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Simpan') }}</button>
                                 </div>

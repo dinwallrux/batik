@@ -64,6 +64,7 @@ class ProdukController extends Controller
             $url = Storage::url($fileName);
 
             $files[] = $url;
+            $files = json_encode($files);
         }
 
         // Replace format number
@@ -72,8 +73,9 @@ class ProdukController extends Controller
         $data = [
             'nama' => $request->nama,
             'harga' => $harga,
-            'foto' => json_encode($files),
-            'deskripsi' => $request->deskripsi
+            'foto' => $files,
+            'deskripsi' => $request->deskripsi,
+            'tampilkan' => $request->has('tampilkan')
         ];
 
         $validator = Validator::make($data, $rules);
@@ -129,7 +131,6 @@ class ProdukController extends Controller
         $rules = array(
             'nama' => 'required',
             'harga' => 'required',
-            'foto' => 'required',
         );
 
         // Ngambil gambar lama
@@ -151,6 +152,7 @@ class ProdukController extends Controller
                 $url = Storage::url($fileName);
 
                 $files[] = $url;
+                $files = json_encode($files);
             }
             
             // Delete old image
@@ -168,8 +170,9 @@ class ProdukController extends Controller
         $data = [
             'nama' => $request->nama,
             'harga' => $harga,
-            'foto' => json_encode($files),
-            'deskripsi' => $request->deskripsi
+            'foto' => $files,
+            'deskripsi' => $request->deskripsi,
+            'tampilkan' => $request->has('tampilkan')
         ];
 
         $validator = Validator::make($data, $rules);

@@ -170,21 +170,23 @@
             </div>
             <div class="row pt-5">
                 @foreach ($products as $product)
-                <div class="col-lg-4 text-center pb-4 mb-4">
-                    <div class="service-item">
-                        <div class="product-image">
-                            <img src="{{ asset( json_decode($product->foto)[0] ) }}" alt="">
+                    @if ($product->tampilkan)
+                        <div class="col-lg-4 text-center pb-4 mb-4">
+                            <div class="service-item">
+                                <div class="product-image">
+                                    <img src="{{ asset( json_decode($product->foto)[0] ) }}" alt="">
+                                </div>
+                                <div class="title-price">
+                                    <h5 class="service-title">{{$product->nama}}</h5>
+                                    <p>Rp.@convert($product->harga)</p>
+                                </div>
+                                <div class="options">
+                                    <p style="text-align: left;">{{ Str::limit($product->deskripsi, 200) }}</p>
+                                </div>
+                                <a href="{{ route('produk.detail', $product->id) }}" class="btn btn-primary main-button">Lihat Produk</a>
+                            </div>
                         </div>
-                        <div class="title-price">
-                            <h5 class="service-title">{{$product->nama}}</h5>
-                            <p>Rp.@convert($product->harga)</p>
-                        </div>
-                        <div class="options">
-                            <p style="text-align: left;">{{ Str::limit($product->deskripsi, 200) }}</p>
-                        </div>
-                        <a href="{{ route('produk.detail', $product->id) }}" class="btn btn-primary main-button">Lihat Produk</a>
-                    </div>
-                </div>
+                    @endif
                 @endforeach
             </div>
         </div>
