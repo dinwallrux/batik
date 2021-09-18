@@ -119,7 +119,7 @@
                                 </div>
 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success mt-4">{{ __('Simpan') }}</button>
+                                    <button type="submit" class="btn btn-primary mt-4">{{ __('Simpan') }}</button>
                                 </div>
 
                             </div>

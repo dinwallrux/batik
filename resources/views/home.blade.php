@@ -18,6 +18,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css')}}/my-style.css">
     <!-- Ionicons -->
     <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+    <link href="{{ asset('argon') }}/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+    <link href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 
     </head>
 
@@ -48,20 +50,6 @@
                             <li class="scroll-to-section"><a href="#welcome" class="active">Home</a></li>
                             <li class="scroll-to-section"><a href="#about">Profil</a></li>
                             <li class="scroll-to-section"><a href="#services">Produk</a></li>
-                            @auth
-                                <li class="scroll-to-section">
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                        @csrf
-                                        <button class="btn p-0" type="submit">
-                                            <a>Logout</a>
-                                        </button>
-                                    </form>
-                                </li>
-                            @else
-                                <li class="scroll-to-section">
-                                    <a href="{{ route('login') }}" type="submit">Login</a>
-                                </li>
-                            @endauth
                             <li class="scroll-to-section">
                                 <a href="{{ route('cart.index') }}">
                                     <i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 16px;"></i>
@@ -78,6 +66,40 @@
                                     </span>
                                 </a>
                             </li>
+                            @auth
+                                <li class="scroll-to-section">
+                                    <div class="dropdown">
+                                        <button class="btn btn-light dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            {{ auth()->user()->name }}
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="{{ route('cart.index') }}">
+                                                <p>
+                                                    <i class="ion ion-md-paper"></i>
+                                                    Pesanan
+                                                </p>
+                                            </a>
+                                            <a class="dropdown-item">
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                                    @csrf
+                                                    <button class="btn p-0" type="submit">
+                                                        <p>
+                                                            <i class="ni ni-user-run"></i>
+                                                            Logout
+                                                        </p>
+                                                    </button>
+                                                </form>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            @else
+                                <li class="scroll-to-section">
+                                    <a href="{{ route('login') }}" type="submit">Login</a>
+                                </li>
+                            @endauth
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -92,7 +114,7 @@
 
 
     <!-- ***** Welcome Area Start ***** -->
-    <div class="welcome-area" id="welcome" style="background-image: url({{asset('img')}}/bg-login.jpeg);">
+    <div class="welcome-area" id="welcome">
 
         <!-- ***** Header Text Start ***** -->
         <div class="header-text">
@@ -103,7 +125,7 @@
                         <p>Cinta itu seperti batik yang dibuat dari banyak warna emosional, itu adalah kain yang pola dan kecerahannya mungkin berbeda-beda</p>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
-                        <img src="{{asset('img')}}/bg-login.jpeg" class="rounded img-fluid d-block mx-auto" alt="First Vector Graphic">
+                        <img src="{{asset('img')}}/art-illustration.svg" class="rounded img-fluid d-block mx-auto" alt="First Vector Graphic">
                     </div>
                 </div>
             </div>

@@ -16,19 +16,20 @@
                         <div class="detail-order">
                             <div class="order">
                                 <h3>Informasi Order</h3>
-                                <p>No. Order: {{ $orderDetail->order_number }}</p>
-                                <p>Status Order: {{ $orderDetail->status }}</p>
-                                <p>Jumlah Produk: {{ $orderDetail->item_count }}</p>
-                                <p>Total: {{ $orderDetail->grand_total }}</p>
+                                <p><b>No. Order</b>: {{ $orderDetail->order_number }}</p>
+                                <p><b>Status Order</b>: {{ $orderDetail->status }}</p>
+                                <p><b>Jumlah Produk</b>: {{ $orderDetail->item_count }}</p>
+                                <p><b>Total</b>: {{ $orderDetail->grand_total }}</p>
                             </div>
                             <div class="address">
                                 <h3>Informasi Pemesan</h3>
+                                <p>{{ $orderDetail->shipping_fullname }}</p>
+                                <p>{{ $orderDetail->shipping_email }}</p>
+                                <p>{{ $orderDetail->shipping_phone }}</p>
                                 <p>{{ $orderDetail->shipping_address }}</p>
                                 <p>{{ $orderDetail->shipping_city }}</p>
                                 <p>{{ $orderDetail->shipping_state }}</p>
                                 <p>{{ $orderDetail->shipping_zipcode }}</p>
-                                <p>{{ $orderDetail->shipping_phone }}</p>
-                                <p>{{ $orderDetail->shipping_email }}</p>
                             </div>
                         </div>
                         <table class="table table-detail-order">

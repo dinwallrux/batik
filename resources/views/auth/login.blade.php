@@ -61,7 +61,7 @@
                         @endif --}}
                     </div>
                     <div class="col-6 text-right">
-                        <a href="{{ route('register') }}" class="text-light">
+                        <a href="{{ route('register') }}" class="text-white">
                             <small>{{ __('Buat akun') }}</small>
                         </a>
                     </div>

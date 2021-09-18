@@ -63,7 +63,7 @@
                                 </div>
 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success mt-4">{{ __('Ubah') }}</button>
+                                    <button type="submit" class="btn btn-primary mt-4">{{ __('Ubah') }}</button>
                                 </div>
                             </div>
                         </form>

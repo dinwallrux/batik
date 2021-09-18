@@ -50,10 +50,7 @@
 }
 
 .bg-custom {
-    background-image: url(../img/bg-login.jpeg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    background: -webkit-linear-gradient(-45deg, rgba(0, 136, 232, 1) 0%, rgba(0, 182, 198, 1) 0%, rgba(0, 136, 232, 1) 100%);
 }
 
 .bg-custom .bg-gradient-primary {

@@ -25,7 +25,6 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Order ID</th>
-                                        <th scope="col">Nama</th>
                                         <th scope="col">Tanggal Order</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Total</th>
@@ -41,7 +40,6 @@
                                                 {{ $data->order_number }}
                                             </a>
                                         </td>
-                                        <td>{{ $data->shipping_fullname }}</td>
                                         <td>{{ $data->created_at }}</td>
                                         <td>
                                             @if ($data->status == 'pending')
