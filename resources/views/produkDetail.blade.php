@@ -14,29 +14,101 @@
         height: 142px;
     }
     .view.gallery-item img {
-        height: 100%;
+        width: 100%;
         object-fit: cover;
     }
 </style>
 
 <!-- Main Navigation -->
-<header>
+<header class="md-bootstrap-header">
 
     <!-- Navbar -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
         <div class="container">
 
             <!-- Brand -->
-            <a class="navbar-brand waves-effect" href="{{ route('home') }}">
-                <img src="{{ asset('argon') }}/img/brand/logo-batik.png" alt="" style="height: 50px !important;">
-                <strong class="blue-text">Yanto Batik</strong>
-            </a>
+
+            <div class="row w-100">
+                <div class="col-4">
+                    <!-- ***** Logo Start ***** -->
+                    <a class="navbar-brand waves-effect" href="{{ route('home') }}">
+                        {{-- <img src="{{ asset('argon') }}/img/brand/logo-batik.png" alt="" style="height: 50px !important;"> --}}
+                        <strong class="brand-name">Yanto Batik</strong>
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                </div>
+                <div class="col-8 d-flex align-items-center justify-content-end">
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li>
+                            <a href="{{ route('home') }}/#welcome" class="active">Home</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('home') }}/#about">Profil</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('home') }}/#services">Produk</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('cart.index') }}">
+                                <i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 16px;"></i>
+                                <span class="badge badge-success" style="padding: 2px 2px 2px 4px;">
+                                    @auth
+                                        @if( session()->get('cart') != null )
+                                            {{ count(session()->get('cart')) }}
+                                        @else
+                                            0
+                                        @endif
+                                    @else
+                                        0
+                                    @endauth
+                                </span>
+                            </a>
+                        </li>
+                        @auth
+                            <li>
+                                <div class="dropdown">
+                                    <button class="btn btn-light dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        {{ auth()->user()->name }}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="{{ route('cart.index') }}">
+                                            <p>
+                                                <i class="ion ion-md-paper"></i>
+                                                Pesanan
+                                            </p>
+                                        </a>
+                                        <a class="dropdown-item">
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                                @csrf
+                                                <button type="submit">
+                                                    <p>
+                                                        <i class="ni ni-user-run"></i>
+                                                        Logout
+                                                    </p>
+                                                </button>
+                                            </form>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        @else
+                            <li>
+                                <a href="{{ route('login') }}" type="submit">Login</a>
+                            </li>
+                        @endauth
+                    </ul>
+                    <!-- ***** Menu End ***** -->
+                </div>
+            </div>
 
         </div>
     </nav>
     <!-- Navbar -->
 
-    <div class="jumbotron color-grey-light mt-70">
+    <div class="jumbotron color-grey-light mt-70 mb-7">
         <div class="d-flex align-items-center h-100">
             <div class="container text-center py-5">
                 <h3 class="mb-0">Detail Produk</h3>

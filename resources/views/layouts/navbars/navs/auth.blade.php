@@ -5,6 +5,33 @@
         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('home') }}">{{ __('Yanto Batik') }}</a>
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex">
+            <li class="nav-item">
+                <a class="nav-link pr-0" href="{{ route('home') }}">
+                    <div class="media align-items-center">
+                        <div class="media-body ml-2 d-none d-lg-block">
+                            <span class="mb-0 text-sm  font-weight-bold">Home</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link pr-0" href="{{ route('home') }}/#about">
+                    <div class="media align-items-center">
+                        <div class="media-body ml-2 d-none d-lg-block">
+                            <span class="mb-0 text-sm  font-weight-bold">Profil</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link pr-0" href="{{ route('home') }}/#produk">
+                    <div class="media align-items-center">
+                        <div class="media-body ml-2 d-none d-lg-block">
+                            <span class="mb-0 text-sm  font-weight-bold">Produk</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media align-items-center">

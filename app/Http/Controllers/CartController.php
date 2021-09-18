@@ -57,16 +57,16 @@ class CartController extends Controller
     public function index()
     {
         $carts = session()->get('cart');
-        if(!isset($carts)) {
-            if ( auth()->user()->peran != 'admin' ) {
-                return redirect()->route('order.self');
-            } else {
-                return redirect()->route('orders.index');
-            }
-        }
-        if(count($carts) < 1) {
-            return redirect()->route('home');
-        }
+        // if(!isset($carts)) {
+        //     if ( auth()->user()->peran != 'admin' ) {
+        //         return redirect()->route('order.self');
+        //     } else {
+        //         return redirect()->route('orders.index');
+        //     }
+        // }
+        // if(count($carts) < 1) {
+        //     return redirect()->route('home');
+        // }
 
         $colorId = 0;
         $sumTotal = 0;

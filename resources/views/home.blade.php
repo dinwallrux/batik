@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Template Mo">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link rel="icon" href="{{ asset('argon') }}/img/brand/logo-batik.png">
 
     <title>Yanto Batik</title>
     <!-- Additional CSS Files -->
@@ -75,7 +76,7 @@
                                             {{ auth()->user()->name }}
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="{{ route('cart.index') }}">
+                                            <a class="dropdown-item" href="{{ route('orders.index') }}">
                                                 <p>
                                                     <i class="ion ion-md-paper"></i>
                                                     Pesanan
@@ -216,21 +217,13 @@
     <!-- ***** Features Small End ***** -->
 
     <!-- ***** Footer Start ***** -->
-    <footer>
+    <footer style="padding: 10px; 0">
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 col-md-12 col-sm-12">
-                    <p class="copyright">Copyright &copy; 2021 Batik</p>
+                    <p class="copyright mt-0">Copyright &copy; 2021 Batik</p>
                 </div>
-                <div class="col-lg-5 col-md-12 col-sm-12">
-                    <ul class="social">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                    </ul>
-                </div>
+                <div class="col-lg-5 col-md-12 col-sm-12"></div>
             </div>
         </div>
     </footer>

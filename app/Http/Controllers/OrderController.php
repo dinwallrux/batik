@@ -21,6 +21,10 @@ class OrderController extends Controller
      */
     public function index()
     {
+        if ( auth()->user()->peran != 'admin' ) {
+            return redirect()->route('order.self');
+        }
+
         $number = 1;
         $datas = Order::latest()->get();
         return view('pages.pesanan.index', compact('number', 'datas'));
