@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Obat;
 use App\Produk;
-use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
-use MongoDB\Driver\Session;
 
 class CartController extends Controller
 {
@@ -34,7 +31,6 @@ class CartController extends Controller
 
             session()->put('cart', $cart);
             return redirect()->back()->with('success', 'Product added to cart successfully!');
-            // return redirect()->route('cart.index');
         }
 
         // if cart not empty then check if this product exist then increment quantity
@@ -42,7 +38,6 @@ class CartController extends Controller
             $cart[$produk->id][$request->color][$request->jenis_kain]['quantity'] += $request->quantity;
             session()->put('cart', $cart);
             return redirect()->back()->with('success', 'Product added to cart successfully!');
-            // return redirect()->route('cart.index');
         }
 
         // if item not exist in cart then add to cart with quantity = 1
@@ -57,13 +52,11 @@ class CartController extends Controller
         ];
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
-        // return redirect()->route('cart.index');
     }
 
     public function index()
     {
         $carts = session()->get('cart');
-        // dd($carts);
 
         $colorId = 0;
         $sumTotal = 0;
