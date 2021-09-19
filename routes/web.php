@@ -43,7 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/', 'CartController@index')->name('cart.index');
 		Route::get('/tambah-produk/{produk}', 'CartController@addCart')->name('cart.add');
 		Route::get('/update/{produk}/{color}', 'CartController@updateCart')->name('cart.update');
-		Route::get('/delete/{produk}/{color}', 'CartController@deleteCart')->name('cart.delete');
+		Route::get('/delete/{produk}/{color}/{jenis}', 'CartController@deleteCart')->name('cart.delete');
 		Route::get('/checkout', 'CartController@viewCheckout')->name('checkout');
 	});
 

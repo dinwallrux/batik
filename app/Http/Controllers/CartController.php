@@ -17,14 +17,18 @@ class CartController extends Controller
         // if cart is empty then this the first product
         if(!$cart) {
             $cart = [
-                $produk->id + $request->color => [
-                    'id' => $produk->id,
-                    'name' => $produk->nama,
-                    'price' => $produk->harga,
-                    'quantity' => $request->quantity,
-                    'image' => json_decode($produk->foto)[0],
-                    'color' => $request->color,
-                    'jenis_kain' => $request->jenis_kain,
+                $produk->id => [
+                    $request->color => [
+                        $request->jenis_kain => [
+                            'id' => $produk->id,
+                            'name' => $produk->nama,
+                            'price' => $produk->harga,
+                            'quantity' => $request->quantity,
+                            'image' => json_decode($produk->foto)[0],
+                            'color' => $request->color,
+                            'jenis_kain' => $request->jenis_kain,
+                        ]
+                    ]
                 ]
             ];
 
@@ -34,15 +38,15 @@ class CartController extends Controller
         }
 
         // if cart not empty then check if this product exist then increment quantity
-        if(isset($cart[$produk->id + $request->color])) {
-            $cart[$produk->id + $request->color]['quantity'] += $request->quantity;
+        if(isset($cart[$produk->id][$request->color][$request->jenis_kain])) {
+            $cart[$produk->id][$request->color][$request->jenis_kain]['quantity'] += $request->quantity;
             session()->put('cart', $cart);
             return redirect()->back()->with('success', 'Product added to cart successfully!');
             // return redirect()->route('cart.index');
         }
 
         // if item not exist in cart then add to cart with quantity = 1
-        $cart[$produk->id + $request->color] = [
+        $cart[$produk->id][$request->color][$request->jenis_kain] = [
             'id' => $produk->id,
             'name' => $produk->nama,
             'price' => $produk->harga,
@@ -59,26 +63,31 @@ class CartController extends Controller
     public function index()
     {
         $carts = session()->get('cart');
-        // if(!isset($carts)) {
-        //     if ( auth()->user()->peran != 'admin' ) {
-        //         return redirect()->route('order.self');
-        //     } else {
-        //         return redirect()->route('orders.index');
-        //     }
-        // }
-        // if(count($carts) < 1) {
-        //     return redirect()->route('home');
-        // }
+        // dd($carts);
 
         $colorId = 0;
         $sumTotal = 0;
-        foreach ($carts as $cart) {
-            $colorId = $cart['color'];
-            $total = $cart['price'] * $cart['quantity'];
-            $sumTotal += $total;
+        $totalItem = 0;
+
+        if($carts) {
+            foreach ($carts as $cart) {
+                foreach ($cart as $color) {
+                    $totalItem += count($color);
+                    foreach ($color as $type) {
+                        $colorId = $type['color'];
+                        $total = $type['price'] * $type['quantity'];
+                        $sumTotal += $total;
+                    }
+                }
+            }
         }
 
-        return view('pages.cart.index', compact('carts', 'colors', 'sumTotal'));
+        // redirect if totalItem is 0
+        if($totalItem < 1) {
+            return redirect()->route('home');
+        }
+
+        return view('pages.cart.index', compact('carts', 'colors', 'sumTotal', 'totalItem'));
     }
 
     public function updateCart(Request $request, Produk $produk, $color)
@@ -92,13 +101,13 @@ class CartController extends Controller
         return redirect()->back();
     }
 
-    public function deleteCart(Produk $produk, $color)
+    public function deleteCart(Produk $produk, $color, $jenis)
     {
         if($produk->id) {
             $carts = session()->get('cart');
 
-            if(isset($carts[$produk->id + $color])) {
-                unset($carts[$produk->id + $color]);
+            if(isset($carts[$produk->id][$color][$jenis])) {
+                unset($carts[$produk->id][$color][$jenis]);
                 session()->put('cart', $carts);
                 session()->flash('success', 'Product has been removed');
                 return redirect()->back();
@@ -110,11 +119,20 @@ class CartController extends Controller
     {
         $carts = session()->get('cart');
         $sumTotal = 0;
-        foreach ($carts as $cart) {
-            $total = $cart['price'] * $cart['quantity'];
-            $sumTotal += $total;
+        $totalItem = 0;
+
+        if($carts) {
+            foreach ($carts as $cart) {
+                foreach ($cart as $color) {
+                    $totalItem += count($color);
+                    foreach ($color as $type) {
+                        $total = $type['price'] * $type['quantity'];
+                        $sumTotal += $total;
+                    }
+                }
+            }
         }
 
-        return view('pages.cart.checkout', compact('carts', 'sumTotal'));
+        return view('pages.cart.checkout', compact('carts', 'sumTotal', 'totalItem'));
     }
 }

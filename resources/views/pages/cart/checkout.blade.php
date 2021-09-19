@@ -38,7 +38,7 @@
                                 <span class="badge badge-success" style="padding: 2px 2px 2px 4px;">
                                     @auth
                                         @if( session()->get('cart') != null )
-                                            {{ count(session()->get('cart')) }}
+                                            {{ $totalItem }}
                                         @else
                                             0
                                         @endif
@@ -213,20 +213,26 @@
                 <!-- Heading -->
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Cart</span>
-                    <span class="badge badge-success badge-pill">{{count(session()->get('cart'))}}</span>
+                    <span class="badge badge-success badge-pill">{{ $totalItem }}</span>
                 </h4>
 
                 <!-- Cart -->
                 <ul class="list-group mb-3 z-depth-1">
-                    @foreach ($carts as $cart)
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0">{{ $cart['name'] }}</h6>
-                            <small class="text-muted">Panjang: {{ $cart['quantity'] }} Meter</small>
-                        </div>
-                        <span class="text-muted">Rp.@convert($cart['price'] * $cart['quantity'])</span>
-                    </li>
-                    @endforeach
+                    @if (session()->get('cart'))
+                        @foreach ($carts as $cart)
+                            @foreach ($cart as $colors)
+                                @foreach ($colors as $type)
+                                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                        <div>
+                                            <h6 class="my-0">{{ $type['name'] }}</h6>
+                                            <small class="text-muted">Panjang: {{ $type['quantity'] }} Meter</small>
+                                        </div>
+                                        <span class="text-muted">Rp.@convert($type['price'] * $type['quantity'])</span>
+                                    </li>
+                                @endforeach
+                            @endforeach
+                        @endforeach
+                    @endif
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total</span>
                         <strong>Rp.@convert($sumTotal)</strong>

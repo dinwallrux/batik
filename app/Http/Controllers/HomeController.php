@@ -15,9 +15,20 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $carts = session()->get('cart');
+
         $profil = Profil::all()->first();
         $products = Produk::latest()->get();
-        return view('home', compact('products', 'profil'));
+        $totalItem = 0;
+
+        if($carts) {
+            foreach ($carts as $cart) {
+                foreach ($cart as $color) {
+                    $totalItem += count($color);
+                }
+            }
+        }
+        return view('home', compact('products', 'profil', 'totalItem'));
     }
 
     public function dashboard()

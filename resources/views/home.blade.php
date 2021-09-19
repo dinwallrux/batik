@@ -57,7 +57,7 @@
                                     <span class="badge badge-success" style="padding: 2px 2px 2px 4px;">
                                         @auth
                                             @if( session()->get('cart') != null )
-                                                {{ count(session()->get('cart')) }}
+                                                {{ $totalItem }}
                                             @else
                                                 0
                                             @endif
@@ -195,7 +195,7 @@
                 @foreach ($products as $product)
                     @if ($product->tampilkan)
                         <div class="col-lg-4 text-center pb-4 mb-4">
-                            <form action="{{ route('cart.add', [$product->id]) }}">
+                            <form class="h-100" action="{{ route('cart.add', [$product->id]) }}">
                                 @csrf
                                 <input class="quantity" min="1" name="quantity" value="1" type="hidden">
 
