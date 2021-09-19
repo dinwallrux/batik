@@ -59,6 +59,8 @@
 }
 
 .service-item {
+    height: 100%;
+    padding-bottom: 100px;
     .product-image {
         height: 200px;
         margin-bottom: 20px;
@@ -90,6 +92,38 @@
     .btn.btn-primary {
         border: none;
         border-radius: 100px;
+        margin-top: 0;
+        margin-right: 10px;
+
+        font-size: 13px;
+        padding: 12px 20px;
+        background-color: #00b4c6;
+        text-transform: uppercase;
+        color: #fff;
+        letter-spacing: 0.25px;
+        transition: all 0.3s ease 0s;
+    }
+    .add-to-cart {
+        background: #28a745;
+        border-radius: 100px;
+        width: 43px;
+        height: 43px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        i {
+            color: #fff;
+        }
+    }
+    .action-btn {
+        position: absolute;
+        bottom: 30px;
+        right: 0;
+        left: 0;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 

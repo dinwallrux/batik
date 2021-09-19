@@ -200,13 +200,18 @@
                                     <img src="{{ asset( json_decode($product->foto)[0] ) }}" alt="">
                                 </div>
                                 <div class="title-price">
-                                    <h5 class="service-title">{{$product->nama}}</h5>
+                                    <h5 class="service-title">{{ Str::limit($product->nama, 25) }}</h5>
                                     <p>Rp.@convert($product->harga)</p>
                                 </div>
                                 <div class="options">
-                                    <p style="text-align: left;">{{ Str::limit($product->deskripsi, 200) }}</p>
+                                    <p style="text-align: left;">{{ Str::limit($product->deskripsi, 60) }}</p>
                                 </div>
-                                <a href="{{ route('produk.detail', $product->id) }}" class="btn btn-primary main-button">Lihat Produk</a>
+                                <div class="action-btn">
+                                    <a href="{{ route('produk.detail', $product->id) }}" class="btn btn-primary">Lihat Produk</a>
+                                    <a href="#" class="add-to-cart">
+                                        <i class="fas fa-cart-plus"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     @endif

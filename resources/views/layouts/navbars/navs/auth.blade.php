@@ -24,7 +24,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link pr-0" href="{{ route('home') }}/#produk">
+                <a class="nav-link pr-0" href="{{ route('home') }}/#services">
                     <div class="media align-items-center">
                         <div class="media-body ml-2 d-none d-lg-block">
                             <span class="mb-0 text-sm  font-weight-bold">Produk</span>
