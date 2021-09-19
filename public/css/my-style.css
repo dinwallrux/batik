@@ -54,6 +54,9 @@
     align-items: flex-start;
     justify-content: space-between;
     margin-bottom: 10px; }
+    .service-item .title-price a:hover h5 {
+      text-decoration: underline;
+      color: #00bcd4; }
     .service-item .title-price .service-title {
       text-align: left;
       width: 55%;
@@ -75,16 +78,6 @@
     color: #fff;
     letter-spacing: 0.25px;
     transition: all 0.3s ease 0s; }
-  .service-item .add-to-cart {
-    background: #28a745;
-    border-radius: 100px;
-    width: 43px;
-    height: 43px;
-    display: flex;
-    align-items: center;
-    justify-content: center; }
-    .service-item .add-to-cart i {
-      color: #fff; }
   .service-item .action-btn {
     position: absolute;
     bottom: 30px;

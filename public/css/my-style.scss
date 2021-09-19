@@ -77,6 +77,15 @@
         justify-content: space-between;
         margin-bottom: 10px;
 
+        a {
+            &:hover {
+                h5 {
+                    text-decoration: underline;
+                    color: #00bcd4;
+                }
+            }
+        }
+
         .service-title {
             text-align: left;
             width: 55%;
@@ -102,18 +111,6 @@
         color: #fff;
         letter-spacing: 0.25px;
         transition: all 0.3s ease 0s;
-    }
-    .add-to-cart {
-        background: #28a745;
-        border-radius: 100px;
-        width: 43px;
-        height: 43px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        i {
-            color: #fff;
-        }
     }
     .action-btn {
         position: absolute;

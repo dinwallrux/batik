@@ -14,6 +14,7 @@ class CartController extends Controller
     {
         $cart = session()->get('cart');
 
+        // if cart is empty then this the first product
         if(!$cart) {
             $cart = [
                 $produk->id + $request->color => [
@@ -28,15 +29,16 @@ class CartController extends Controller
             ];
 
             session()->put('cart', $cart);
-//            return redirect()->back()->with('success', 'Product added to cart successfully!');
-            return redirect()->route('cart.index');
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
+            // return redirect()->route('cart.index');
         }
 
+        // if cart not empty then check if this product exist then increment quantity
         if(isset($cart[$produk->id + $request->color])) {
-            $cart[$produk->id + $request->color]['quantity']++;
+            $cart[$produk->id + $request->color]['quantity'] += $request->quantity;
             session()->put('cart', $cart);
-//            return redirect()->back()->with('success', 'Product added to cart successfully!');
-            return redirect()->route('cart.index');
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
+            // return redirect()->route('cart.index');
         }
 
         // if item not exist in cart then add to cart with quantity = 1
@@ -44,14 +46,14 @@ class CartController extends Controller
             'id' => $produk->id,
             'name' => $produk->nama,
             'price' => $produk->harga,
-            'quantity' => $request->quantity,
+            'quantity' => $request->quantity == null ? "1" : $request->quantity,
             'image' => json_decode($produk->foto)[0],
             'color' => $request->color,
             'jenis_kain' => $request->jenis_kain,
         ];
         session()->put('cart', $cart);
-//        return redirect()->back()->with('success', 'Product added to cart successfully!');
-        return redirect()->route('cart.index');
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
+        // return redirect()->route('cart.index');
     }
 
     public function index()

@@ -195,24 +195,58 @@
                 @foreach ($products as $product)
                     @if ($product->tampilkan)
                         <div class="col-lg-4 text-center pb-4 mb-4">
-                            <div class="service-item">
-                                <div class="product-image">
-                                    <img src="{{ asset( json_decode($product->foto)[0] ) }}" alt="">
+                            <form action="{{ route('cart.add', [$product->id]) }}">
+                                @csrf
+                                <input class="quantity" min="1" name="quantity" value="1" type="hidden">
+
+                                <div class="service-item">
+                                    <div class="product-image">
+                                        <a href="{{ route('produk.detail', $product->id) }}">
+                                            <img src="{{ asset( json_decode($product->foto)[0] ) }}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="title-price">
+                                        <a href="{{ route('produk.detail', $product->id) }}">
+                                            <h5 class="service-title w-100">{{ Str::limit($product->nama, 25) }}</h5>
+                                        </a>
+                                        <p>Rp.@convert($product->harga)</p>
+                                    </div>
+                                    <div class="options">
+                                        <p style="text-align: left;">{{ Str::limit($product->deskripsi, 60) }}</p>
+                                        <table class="table table-sm table-borderless mb-0">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <p class="text-left">Warna</p>
+                                                        <select name="color" class="form-control mb-2">
+                                                            @foreach ($product->obat as $color)
+                                                            <option value="{{ $color->id }}">{{ $color->hasil }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <p class="text-left">Jenis Kain</p>
+                                                        <select name="jenis_kain" class="form-control mb-2">
+                                                            <option value="Rayon">Rayon</option>
+                                                            <option value="Rayon crinkle">Rayon crinkle</option>
+                                                            <option value="Rayon voile">Rayon voile</option>
+                                                            <option value="Blacu">Blacu</option>
+                                                            <option value="Katun prima">Katun prima</option>
+                                                            <option value="Katun primisima">Katun primisima</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="action-btn">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-cart-plus"></i>
+                                            Tambah ke cart
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="title-price">
-                                    <h5 class="service-title">{{ Str::limit($product->nama, 25) }}</h5>
-                                    <p>Rp.@convert($product->harga)</p>
-                                </div>
-                                <div class="options">
-                                    <p style="text-align: left;">{{ Str::limit($product->deskripsi, 60) }}</p>
-                                </div>
-                                <div class="action-btn">
-                                    <a href="{{ route('produk.detail', $product->id) }}" class="btn btn-primary">Lihat Produk</a>
-                                    <a href="#" class="add-to-cart">
-                                        <i class="fas fa-cart-plus"></i>
-                                    </a>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     @endif
                 @endforeach
