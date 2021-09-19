@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 
 class CartController extends Controller
 {
@@ -30,14 +32,14 @@ class CartController extends Controller
             ];
 
             session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
+            return Redirect::to(URL::previous() . "#services");
         }
 
         // if cart not empty then check if this product exist then increment quantity
         if(isset($cart[$produk->id][$request->color][$request->jenis_kain])) {
             $cart[$produk->id][$request->color][$request->jenis_kain]['quantity'] += $request->quantity;
             session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
+            return Redirect::to(URL::previous() . "#services");
         }
 
         // if item not exist in cart then add to cart with quantity = 1
@@ -51,7 +53,7 @@ class CartController extends Controller
             'jenis_kain' => $request->jenis_kain,
         ];
         session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
+        return Redirect::to(URL::previous() . "#services");
     }
 
     public function index()
