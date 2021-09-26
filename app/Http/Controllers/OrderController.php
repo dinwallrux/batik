@@ -60,9 +60,14 @@ class OrderController extends Controller
         $carts = session()->get('cart');
         $sumTotal = 0;
         foreach ($carts as $cart) {
-            $total = $cart['price'] * $cart['quantity'];
-            $sumTotal += $total;
+            foreach ($cart as $color) {
+                foreach ($color as $type) {
+                    $total = $type['price'] * $type['quantity'];
+                    $sumTotal += $total;
+                }
+            }
         }
+        $sumTotal += $request->ongkir;
 
         $datas = [
             'order_number' => uniqid('OrderNumber-'),
@@ -72,12 +77,15 @@ class OrderController extends Controller
 
             'shipping_fullname' => $request->fullname,
             'shipping_address' => $request->address,
-            'shipping_city' => $request->city,
-            'shipping_state' => 'Indonesia',
-            'shipping_zipcode' => $request->zipcode,
+            'shipping_city' => $request->shipping_city,
+            'shipping_state' => $request->shipping_state,
+            'shipping_zipcode' => $request->shipping_zipcode,
             'shipping_phone' => $request->phone,
             'shipping_email' => $request->email,
             'notes' => $request->notes,
+            'ongkir' => $request->ongkir,
+            'kurir' => $request->kurir,
+            'layanan' => $request->layanan
         ];
 
         $validator = Validator::make($datas, $rules);
@@ -88,16 +96,20 @@ class OrderController extends Controller
             $order = Order::create($datas);
 
             $carts = session()->get('cart');
-            foreach($carts as $cart) {
-                $order->items()->attach(
-                    $cart['id'], 
-                    [
-                        'price'=> $cart['price'], 
-                        'quantity'=> $cart['quantity'], 
-                        'obat_id' => $cart['color'],
-                        'jenis_kain' => $cart['jenis_kain'],
-                    ]
-                );
+            foreach ($carts as $cart) {
+                foreach ($cart as $color) {
+                    foreach ($color as $type) {
+                        $order->items()->attach(
+                            $type['id'], 
+                            [
+                                'price'=> $type['price'], 
+                                'quantity'=> $type['quantity'], 
+                                'obat_id' => $type['color'],
+                                'jenis_kain' => $type['jenis_kain'],
+                            ]
+                        );
+                    }
+                }
             }
 
             // Empty cart

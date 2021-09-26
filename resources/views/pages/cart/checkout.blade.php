@@ -119,6 +119,11 @@
                     <form class="card-body" method="post" action="{{ route('orders.store') }}">
                         @csrf
 
+                        <input type="hidden" name="provinsi_asal" id="provinsi_asal" value="1">
+                        <input type="hidden" name="kota_asal" id="kota_asal" value="114">
+                        <input type="hidden" name="ongkir">
+                        <input type="hidden" name="total" value="{{ $sumTotal }}">
+
                         <!--Grid row-->
                         <div class="row">
 
@@ -127,7 +132,7 @@
 
                                 <!--firstName-->
                                 <div class="md-form ">
-                                    <input type="text" name="fullname" id="fullname" class="form-control">
+                                    <input type="text" name="fullname" id="fullname" class="form-control" value="{{ auth()->user()->name }}">
                                     <label for="firstName" class="">Nama Lengkap</label>
                                 </div>
 
@@ -139,7 +144,7 @@
 
                                 <!--email-->
                                 <div class="md-form">
-                                    <input type="text" name="email" id="email" class="form-control">
+                                    <input type="text" name="email" id="email" class="form-control" value="{{ auth()->user()->email }}">
                                     <label for="email" class="">Email</label>
                                 </div>
 
@@ -156,8 +161,13 @@
                             <div class="col-md-6 mb-2">
 
                                 <div class="md-form">
-                                    <input type="text" class="form-control" name="city" id="city" placeholder="" required>
-                                    <label for="city" class="">Kota</label>
+                                    <select name="provinsi_tujuan" id="provinsi_tujuan" class="form-control" onchange="myEnvironment.setCity('provinsi_tujuan')" required>
+                                        <option value="">Pilih Provinsi Tujuan</option>
+                                        @foreach ($provinces as $province)
+                                        <option value="{{ $province['province_id'] }}" data-nama-provinsi="{{ $province['province'] }}">{{ $province['province'] }}</option>
+                                        @endforeach
+                                    </select>
+                                    <input type="hidden" name="shipping_state">
                                 </div>
 
                             </div>
@@ -167,8 +177,43 @@
                             <div class="col-md-6">
 
                                 <div class="md-form">
-                                    <input type="text" class="form-control" name="zipcode" id="zipcode" placeholder="" required>
-                                    <label for="zipcode" class="">Kode pos</label>
+                                    <select name="kota_tujuan" id="kota_tujuan" class="form-control" required>
+                                        <option value="">Pilih Kota Tujuan</option>
+                                    </select>
+                                    <input type="hidden" name="shipping_city">
+                                </div>
+
+                            </div>
+                            <!--Grid column-->
+
+                        </div>
+                        <!--Grid row-->
+
+                        <!--Grid row-->
+                        <div class="row">
+
+                            <!--Grid column-->
+                            <div class="col-md-6 mb-2">
+
+                                <div class="md-form">
+                                    <select name="kurir" id="kurir" class="form-control" onchange="myEnvironment.setService('kota_asal', 'kota_tujuan', 'kurir')" required>
+                                        <option value="">Pilih Kurir</option>
+                                        <option value="jne">JNE</option>
+                                        <option value="tiki">TIKI</option>
+                                        <option value="pos">POS INDONESIA</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <!--Grid column-->
+
+                            <!--Grid column-->
+                            <div class="col-md-6">
+
+                                <div class="md-form">
+                                    <select name="layanan" id="layanan" class="form-control" onchange="myEnvironment.setOngkirPrice('layanan')" required>
+                                        <option value="">Pilih layanan</option>
+                                    </select>
                                 </div>
 
                             </div>
@@ -180,7 +225,12 @@
                         <!--address-->
                         <div class="md-form mb-5">
                             <input type="text" name="address" id="address" class="form-control">
-                            <label for="address" class="">Alamat</label>
+                            <label for="address" class="">Alamat Detail</label>
+                        </div>
+
+                        <div class="md-form mb-5">
+                            <input type="text" name="shipping_zipcode" id="shipping_zipcode" class="form-control">
+                            <label for="shipping_zipcode" class="">Kode Pos</label>
                         </div>
 
                         <!--phone-->
@@ -233,9 +283,13 @@
                             @endforeach
                         @endforeach
                     @endif
-                    <li class="list-group-item d-flex justify-content-between">
+                    <li id="ongkir-price" class="list-group-item d-flex justify-content-between">
+                        <span>Ongkir</span>
+                        <strong></strong>
+                    </li>
+                    <li id="total_price" class="list-group-item d-flex justify-content-between">
                         <span>Total</span>
-                        <strong>Rp.@convert($sumTotal)</strong>
+                        <strong></strong>
                     </li>
                 </ul>
                 <!-- Cart -->

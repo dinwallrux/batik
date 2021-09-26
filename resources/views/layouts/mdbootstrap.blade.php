@@ -38,5 +38,6 @@
     <script type="text/javascript" src="{{ asset('mdbootstrap/ecommerce/mdb-pro.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('mdbootstrap/ecommerce/mdb-plugins-gathered.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('mdbootstrap/ecommerce/compiled-addons.min.js') }}"></script>
+    <script src="{{ asset('js') }}/my-script.js"></script>
 </body>
 </html>

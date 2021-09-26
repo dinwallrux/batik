@@ -59,5 +59,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/email-checkout','CheckoutController@index');
 
+	Route::get('province', 'CartController@get_province')->name('province');
+	Route::get('/city/{id}','CartController@get_city')->name('city');
+	Route::get('/origin={city_origin}&destination={city_destination}&weight={weight}&courier={courier}', 'CartController@get_ongkir')->name('ongkir');
+
 });
 
