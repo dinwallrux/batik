@@ -85,11 +85,11 @@ class CartController extends Controller
         return view('pages.cart.index', compact('carts', 'colors', 'sumTotal', 'totalItem'));
     }
 
-    public function updateCart(Request $request, Produk $produk, $color)
+    public function updateCart(Request $request, Produk $produk, $color, $jenis_kain)
     {
         // update the item on cart
         $cart = session()->get('cart');
-        $cart[$produk->id + $color]['quantity'] = $request->quantity;
+        $cart[$produk->id][$color][$jenis_kain]['quantity'] = $request->quantity;
 
         session()->put('cart', $cart);
         session()->flash('success', 'Cart updated successfully');

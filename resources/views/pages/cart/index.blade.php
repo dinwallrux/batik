@@ -152,7 +152,7 @@
                                                                 </div>
                                                             </div>
                                                             <div>
-                                                                <form action="{{ route('cart.update', [$type['id'], $type['color']]) }}">
+                                                                <form action="{{ route('cart.update', [ $type['id'], $type['color'], $type['jenis_kain'] ]) }}">
                                                                     <p class="mb-1">Panjang</p>
                                                                     <div class="d-flex align-items-center">
                                                                         <div class="def-number-input number-input safari_only mb-0 w-100">
