@@ -18,27 +18,33 @@
                 <h2>{{ $produkOrdered['order_number'] }}</h2>
                 <p>Hai, {{ $orderName }}</p>
                 <p>Tanggal Order: {{ $produkOrdered['created_at'] }}</p>
+                <p>Kurir: {{ $produkOrdered['kurir'] }}</p>
+                <p>Layanan: {{ $produkOrdered['layanan'] }}</p>
                 <table class="table" border="1" width="100%">
                     <thead>
                         <tr>
-                            <th scope="col">Nama Produk</th>
+                            <th scope="col" style="text-align: left;">Nama Produk</th>
                             <th scope="col">Jumlah</th>
-                            <th scope="col">Harga</th>
+                            <th scope="col" style="text-align: right;">Harga</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($produkOrdered->items as $item)
                         <tr>
-                            <td>{{ $item->nama }}</td>
-                            <td>{{ $item->pivot->quantity }}</td>
-                            <td>Rp.@convert($item->pivot->price * $item->pivot->quantity)</td>
+                            <td style="text-align: left;">{{ $item->nama }}</td>
+                            <td style="text-align: center;">{{ $item->pivot->quantity }}</td>
+                            <td style="text-align: right;">Rp.@convert($item->pivot->price * $item->pivot->quantity)</td>
                         </tr>
                         @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="2">Total</td>
-                            <td>Rp.@convert($produkOrdered['grand_total'])</td>
+                            <td colspan="2"><b>Ongkir</b></td>
+                            <td style="text-align: right;">Rp.@convert($produkOrdered['ongkir'])</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><b>Total</b></td>
+                            <td style="text-align: right;">Rp.@convert($produkOrdered['grand_total'])</td>
                         </tr>
                     </tfoot>
                 </table>

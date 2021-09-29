@@ -17,7 +17,7 @@ class AdminMiddleware
     public function handle($request, Closure $next)
     {
         if(Auth::user()->peran != 'admin') {
-            return redirect()->route('order.self');
+            return redirect()->route('home');
         }
         return $next($request);
     }

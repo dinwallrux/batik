@@ -17,9 +17,10 @@
                             <div class="order">
                                 <h3>Informasi Order</h3>
                                 <p><b>No. Order</b>: {{ $orderDetail->order_number }}</p>
+                                <p><b>Kurir</b>: {{ $orderDetail->kurir }}</p>
+                                <p><b>Layanan</b>: {{ $orderDetail->layanan }}</p>
                                 <p><b>Status Order</b>: {{ $orderDetail->status }}</p>
                                 <p><b>Jumlah Produk</b>: {{ $orderDetail->item_count }}</p>
-                                <p><b>Total</b>: {{ $orderDetail->grand_total }}</p>
                             </div>
                             <div class="address">
                                 <h3>Informasi Pemesan</h3>
@@ -39,7 +40,7 @@
                                     <th>Warna</th>
                                     <th>Jenis Kain</th>
                                     <th>Panjang</th>
-                                    <th>Total</th>
+                                    <th>Sub Total</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,6 +67,22 @@
                                 </tr>
                                 @endforeach
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td><b>Ongkir</b></td>
+                                    <td><p>Rp.@convert($orderDetail->ongkir)</p></td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td><b>Total</b></td>
+                                    <td><p>Rp.@convert($orderDetail->grand_total)</p></td>
+                                </tr>
+                            </tfoot>
                         </table>
 
                         <form method="post" class="form-bukti-pembayaran" action="{{ route('bukti_pembayaran', $orderDetail->id) }}" enctype="multipart/form-data">
