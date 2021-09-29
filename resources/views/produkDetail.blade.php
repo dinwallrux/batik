@@ -191,7 +191,7 @@
 
                             <h5>{{ $product->nama }}</h5>
                             {{-- <p class="mb-2 text-muted text-uppercase small">Shirts</p> --}}
-                            <p><span class="mr-1"><strong>Rp.@convert($product->harga)</strong></span></p>
+                            <p><span class="mr-1"><strong>Rp @convert($product->harga)</strong></span></p>
                             <p class="pt-1">{{ $product->deskripsi }}</p>
                             <div class="table-responsive">
                                 <table class="table table-sm table-borderless mb-0">

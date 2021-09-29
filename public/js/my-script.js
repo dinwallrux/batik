@@ -8,7 +8,7 @@ let myEnvironment = {
         // self.deleteFile();
     },
     currencyFormat: function(num) {
-        return 'Rp.' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(num);
     },
     imgPreview: function (input, preview) {
         let input_produk = $(input)[0];

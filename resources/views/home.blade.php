@@ -209,7 +209,7 @@
                                         <a href="{{ route('produk.detail', $product->id) }}">
                                             <h5 class="service-title w-100">{{ Str::limit($product->nama, 25) }}</h5>
                                         </a>
-                                        <p>Rp.@convert($product->harga)</p>
+                                        <p>Rp @convert($product->harga)</p>
                                     </div>
                                     <div class="options">
                                         <p style="text-align: left;">{{ Str::limit($product->deskripsi, 60) }}</p>

@@ -277,7 +277,7 @@
                                             <h6 class="my-0">{{ $type['name'] }}</h6>
                                             <small class="text-muted">Panjang: {{ $type['quantity'] }} Meter</small>
                                         </div>
-                                        <span class="text-muted">Rp.@convert($type['price'] * $type['quantity'])</span>
+                                        <span class="text-muted">Rp @convert($type['price'] * $type['quantity'])</span>
                                     </li>
                                 @endforeach
                             @endforeach

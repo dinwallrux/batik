@@ -62,7 +62,7 @@
                                         <p>{{ $product->pivot->quantity }} Meter</p>
                                     </td>
                                     <td>
-                                        <p>Rp.@convert($product->pivot->price * $product->pivot->quantity)</p>
+                                        <p>Rp @convert($product->pivot->price * $product->pivot->quantity)</p>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -73,14 +73,14 @@
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td><b>Ongkir</b></td>
-                                    <td><p>Rp.@convert($orderDetail->ongkir)</p></td>
+                                    <td><p>Rp @convert($orderDetail->ongkir)</p></td>
                                 </tr>
                                 <tr>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td><b>Total</b></td>
-                                    <td><p>Rp.@convert($orderDetail->grand_total)</p></td>
+                                    <td><p>Rp @convert($orderDetail->grand_total)</p></td>
                                 </tr>
                             </tfoot>
                         </table>

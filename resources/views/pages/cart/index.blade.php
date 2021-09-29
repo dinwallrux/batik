@@ -174,7 +174,7 @@
                                                                     </button>
                                                                 </form>
                                                             </div>
-                                                            <p class="mb-0"><span><strong>Rp.@convert($type['price'])</strong></span></p>
+                                                            <p class="mb-0"><span><strong>Rp @convert($type['price'])</strong></span></p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -207,7 +207,7 @@
                                     <div>
                                         <strong>Total Harga</strong>
                                     </div>
-                                    <span><strong>Rp.@convert($sumTotal)</strong></span>
+                                    <span><strong>Rp @convert($sumTotal)</strong></span>
                                 </li>
                             </ul>
 

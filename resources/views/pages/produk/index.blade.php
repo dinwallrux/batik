@@ -40,7 +40,7 @@
                                     <tr>
                                         <td>{{ $number++ }}</td>
                                         <td>{{$data->nama}}</td>
-                                        <td>Rp.@convert($data->harga)</td>
+                                        <td>Rp @convert($data->harga)</td>
                                         <td>
                                             <img style="width: 100px;" src="{{ asset( json_decode($data->foto)[0] ) }}" alt="">
                                         </td>

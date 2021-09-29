@@ -60,7 +60,7 @@
                                                 </span>
                                             @endif
                                         </td>
-                                        <td>Rp.@convert($data->grand_total)</td>
+                                        <td>Rp @convert($data->grand_total)</td>
 
                                         @if( auth()->user()->peran != 'pembeli' )
                                         <td class="text-right">

@@ -24,27 +24,27 @@
                     <thead>
                         <tr>
                             <th scope="col" style="text-align: left;">Nama Produk</th>
-                            <th scope="col">Jumlah</th>
-                            <th scope="col" style="text-align: right;">Harga</th>
+                            <th scope="col" style="text-align: left;">Jumlah</th>
+                            <th scope="col" style="text-align: left;">Harga</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($produkOrdered->items as $item)
                         <tr>
                             <td style="text-align: left;">{{ $item->nama }}</td>
-                            <td style="text-align: center;">{{ $item->pivot->quantity }}</td>
-                            <td style="text-align: right;">Rp.@convert($item->pivot->price * $item->pivot->quantity)</td>
+                            <td style="text-align: left;">{{ $item->pivot->quantity }}</td>
+                            <td style="text-align: left;">Rp @convert($item->pivot->price * $item->pivot->quantity)</td>
                         </tr>
                         @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
                             <td colspan="2"><b>Ongkir</b></td>
-                            <td style="text-align: right;">Rp.@convert($produkOrdered['ongkir'])</td>
+                            <td style="text-align: left;">Rp @convert($produkOrdered['ongkir'])</td>
                         </tr>
                         <tr>
                             <td colspan="2"><b>Total</b></td>
-                            <td style="text-align: right;">Rp.@convert($produkOrdered['grand_total'])</td>
+                            <td style="text-align: left;">Rp @convert($produkOrdered['grand_total'])</td>
                         </tr>
                     </tfoot>
                 </table>
