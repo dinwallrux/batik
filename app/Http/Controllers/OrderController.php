@@ -160,17 +160,26 @@ class OrderController extends Controller
     {
         $rules = [
             'status' => 'required',
+            'status_pengiriman' => 'required',
         ];
 
+        // set status if $request status is null
+        $status = $order->status;
+
+        if($request->status != null) {
+            $status = $request->status;
+        }
+
         $data = [
-            'status' => $request->status,
+            'status' => $status,
+            'status_pengiriman' => $request->status_pengiriman,
         ];
 
         $validator = Validator::make($data, $rules);
 
         if($validator->fails()){
             $errors = $validator->errors();
-            return redirect()->route('orders')->withErrors($errors)->withInput($request->all());
+            return redirect()->route('orders.index')->withErrors($errors)->withInput($request->all());
         } else {
             $order->update($data);
 

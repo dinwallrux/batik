@@ -27,6 +27,7 @@
                             @endif
 
                             <div class="pl-lg-4">
+                                @if( auth()->user()->peran != 'pembeli' )
                                 <div class="form-group{{ $errors->has('status') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-name">{{ __('Status') }}</label>
                                     <select name="status" class="form-control form-control-alternative{{ $errors->has('status') ? ' is-invalid' : '' }}">
@@ -42,11 +43,33 @@
                                         </span>
                                     @endif
                                 </div>
+                                @endif
+
+                                <div class="form-group{{ $errors->has('status') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-name">{{ __('Status Pengiriman') }}</label>
+                                    <select name="status_pengiriman" class="form-control form-control-alternative{{ $errors->has('status_pengiriman') ? ' is-invalid' : '' }}">
+                                        @if( auth()->user()->peran != 'pembeli' )
+                                        <option {{ $order->status == "belum dikirim" ? 'selected' : '' }} value="belum dikirim">Belum dikirim</option>
+                                        <option {{ $order->status == "dikirim" ? 'selected' : '' }} value="dikirim">Dikirim</option>
+                                        @endif
+                                        @if( auth()->user()->peran != 'admin' )
+                                        <option {{ $order->status == "" ? 'selected' : '' }} value=""></option>
+                                        @endif
+                                        <option {{ $order->status == "diterima" ? 'selected' : '' }} value="diterima">Diterima</option>
+                                    </select>
+
+                                    @if ($errors->has('nama'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('status_pengiriman') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
 
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Ubah') }}</button>
                                 </div>
                             </div>
+
                         </form>
                     </div>
                 </div>

@@ -27,6 +27,7 @@
                                         <th scope="col">Order ID</th>
                                         <th scope="col">Tanggal Order</th>
                                         <th scope="col">Status</th>
+                                        <th scope="col">Status Pengiriman</th>
                                         <th scope="col">Total</th>
                                         <th scope="col"></th>
                                     </tr>
@@ -59,6 +60,9 @@
                                                     {{ $data->status }}
                                                 </span>
                                             @endif
+                                        </td>
+                                        <td>
+                                            {{ $data->status_pengiriman }}
                                         </td>
                                         <td>Rp @convert($data->grand_total)</td>
                                         <td class="text-right">
