@@ -203,4 +203,19 @@ section#services {
   .skin-light .btn-primary:hover {
     background-color: #00afcb !important; }
 
+ul.list-photo {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap; }
+  ul.list-photo li {
+    width: calc(100%/3.5);
+    margin: 0 10px; }
+  ul.list-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; }
+
 /*# sourceMappingURL=my-style.css.map */

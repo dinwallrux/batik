@@ -41,7 +41,7 @@
                                         <td>
                                             <img style="width: 100px;" src="{{asset($data->gambar)}}" alt="">
                                         </td>
-                                        <td>{{ $data->deskripsi }}</td>
+                                        <td style="white-space: break-spaces;">{{ $data->deskripsi }}</td>
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"

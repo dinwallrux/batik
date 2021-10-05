@@ -39,7 +39,11 @@
                                     @foreach ($datas as $data)
                                     <tr>
                                         <td>{{ $number++ }}</td>
-                                        <td>{{$data->nama}}</td>
+                                        <td>
+                                            <a href="{{ route('produk.show', $data->id) }}">
+                                                {{$data->nama}}
+                                            </a>
+                                        </td>
                                         <td>Rp @convert($data->harga)</td>
                                         <td>
                                             <img style="width: 100px;" src="{{ asset( json_decode($data->foto)[0] ) }}" alt="">

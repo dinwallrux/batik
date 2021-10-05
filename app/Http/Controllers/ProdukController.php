@@ -64,8 +64,8 @@ class ProdukController extends Controller
             $url = Storage::url($fileName);
 
             $files[] = $url;
-            $files = json_encode($files);
         }
+        $files = json_encode($files);
 
         // Replace format number
         $harga = str_replace('.', '', $request->harga);
@@ -103,7 +103,7 @@ class ProdukController extends Controller
      */
     public function show(Produk $produk)
     {
-
+        return view('pages.produk.show', compact('produk'));
     }
 
     /**
@@ -152,8 +152,8 @@ class ProdukController extends Controller
                 $url = Storage::url($fileName);
 
                 $files[] = $url;
-                $files = json_encode($files);
             }
+            $files = json_encode($files);
             
             // Delete old image
             if($oldPhoto != null) {
