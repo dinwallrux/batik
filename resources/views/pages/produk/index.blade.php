@@ -30,8 +30,6 @@
                                         <th scope="col">Nama</th>
                                         <th scope="col">Harga <span style="text-transform: capitalize">(Rp)</span></th>
                                         <th scope="col">Gambar</th>
-                                        <th scope="col">Warna</th>
-                                        <th scope="col">Deskripsi</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
@@ -47,14 +45,6 @@
                                         <td>Rp @convert($data->harga)</td>
                                         <td>
                                             <img style="width: 100px;" src="{{ asset( json_decode($data->foto)[0] ) }}" alt="">
-                                        </td>
-                                        <td>
-                                            @foreach ($data->obat as $color)
-                                                {{ $color->hasil }},
-                                            @endforeach
-                                        </td>
-                                        <td>
-                                            {{ Str::limit($data->deskripsi, 50) }}
                                         </td>
                                         <td class="text-right">
                                             <div class="dropdown">
