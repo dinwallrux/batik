@@ -29,7 +29,8 @@ class Order extends Model
         'kurir',
         'layanan',
         'ongkir',
-        'status_pengiriman'
+        'status_pengiriman',
+        'feedback_produk'
     ];
 
     public function getCreatedAtAttribute($date)
@@ -39,7 +40,7 @@ class Order extends Model
 
     public function getUpdatedAtAttribute($date)
     {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d-m-Y');
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d-m-Y H:i');
     }
 
     public function items()

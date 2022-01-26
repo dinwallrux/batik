@@ -33,6 +33,10 @@
                                 <p>{{ $orderDetail->shipping_zipcode }}</p>
                             </div>
                         </div>
+                        <br>
+                        <div class="detail-order">
+                            <p><b>Proses pengerjaan produk yang diorder maksimal paling lambat 7 hari</b></p>
+                        </div>
                         <table class="table table-detail-order">
                             <thead>
                                 <tr>
@@ -125,6 +129,14 @@
                                 </div>
                             @endif
                         </form>
+
+                        <div class="feedback">
+                            <label class="form-control-label">Feedback Produk</label>
+                            <div class="feedback-text card p-3">
+                                <p>{{ $orderDetail->feedback_produk }}</p>
+                                <small class="text-right">{{ $orderDetail->updated_at }}</small>
+                            </div>
+                        </div>
 
                     </div>
                 </div>

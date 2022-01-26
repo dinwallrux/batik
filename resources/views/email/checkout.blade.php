@@ -63,6 +63,9 @@
                 <p>Bank: BCA</p>
                 <p>Atas Nama: Yanto Batik</p>
                 <p>No Rekening: 123456789</p>
+
+                <h4>Proses pengerjaan produk yang diorder maksimal paling lambat 7 hari</h4>
+                <h4>Apabila produk yang sudah diterima rusak / tidak sesuai bisa langsung mengirim email ke yantobatik@mail.com</h4>
             </div>
         </div>
     </div>

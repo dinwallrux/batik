@@ -53,17 +53,30 @@
                                         <option {{ $order->status == "dikirim" ? 'selected' : '' }} value="dikirim">Dikirim</option>
                                         @endif
                                         @if( auth()->user()->peran != 'admin' )
-                                        <option {{ $order->status == "" ? 'selected' : '' }} value=""></option>
+                                        <option {{ $order->status == "" ? 'selected' : '' }} value="belum dikirim">Belum dikirim</option>
                                         @endif
                                         <option {{ $order->status == "diterima" ? 'selected' : '' }} value="diterima">Diterima</option>
                                     </select>
 
-                                    @if ($errors->has('nama'))
+                                    @if ($errors->has('status_pengiriman'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('status_pengiriman') }}</strong>
                                         </span>
                                     @endif
                                 </div>
+
+                                @if( auth()->user()->peran != 'admin' )
+                                <div class="form-group{{ $errors->has('status') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-name">{{ __('Feedback produk') }}</label>
+                                    <textarea name="feedback_produk" class="form-control form-control-alternative{{ $errors->has('feedback_produk') ? ' is-invalid' : '' }}" cols="30" rows="10">{{ $order->feedback_produk }}</textarea>
+
+                                    @if ($errors->has('feedback_produk'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('feedback_produk') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                @endif
 
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Ubah') }}</button>

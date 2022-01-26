@@ -160,7 +160,6 @@ class OrderController extends Controller
     {
         $rules = [
             'status' => 'required',
-            'status_pengiriman' => 'required',
         ];
 
         // set status if $request status is null
@@ -173,6 +172,7 @@ class OrderController extends Controller
         $data = [
             'status' => $status,
             'status_pengiriman' => $request->status_pengiriman,
+            'feedback_produk' => $request->feedback_produk,
         ];
 
         $validator = Validator::make($data, $rules);
