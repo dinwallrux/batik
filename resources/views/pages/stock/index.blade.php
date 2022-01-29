@@ -50,7 +50,7 @@
                                     <tr>
                                         <td>{{ $numberKain++ }}</td>
                                         <td>{{ $data->nama }}</td>
-                                        <td style="white-space: break-spaces;">{{ $data->stock }}</td>
+                                        <td style="white-space: break-spaces;">{{ $data->stock }} Meter</td>
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
@@ -103,7 +103,7 @@
                                     <tr>
                                         <td>{{ $numberObat++ }}</td>
                                         <td>{{ $data->nama }}</td>
-                                        <td style="white-space: break-spaces;">{{ $data->stock }}</td>
+                                        <td style="white-space: break-spaces;">{{ $data->stock }} (kg)</td>
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
