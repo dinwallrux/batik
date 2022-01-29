@@ -135,6 +135,11 @@
                             <div class="feedback-text card p-3">
                                 <p>{{ $orderDetail->feedback_produk }}</p>
                                 <small class="text-right">{{ $orderDetail->updated_at }}</small>
+                                @if (!is_null($id_notification))
+                                <div style="display: flex; justify-content: flex-end;">
+                                    <a href="{{ route('markAsRead', $id_notification) }}" class="btn btn-primary btn-sm mt-3" style="width: 170px;">Tandai sudah dibaca</a>
+                                </div>
+                                @endif
                             </div>
                         </div>
 

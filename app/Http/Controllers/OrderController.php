@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\User;
 use App\Mail\CheckoutEmail;
+use App\Notifications\FeedbackProduct;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use File;
+use Illuminate\Support\Facades\Notification;
 use Image;
 
 class OrderController extends Controller
@@ -131,11 +134,11 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Order $order, Request $request)
     {
         $orderDetail = Order::where('id', $order->id)->with('items')->get()->first();
-
-        return view('pages.pesanan.show', compact('orderDetail'));
+        $id_notification = $request->input('id_notification');
+        return view('pages.pesanan.show', compact('orderDetail', 'id_notification'));
     }
 
     /**
@@ -182,7 +185,9 @@ class OrderController extends Controller
             return redirect()->route('orders.index')->withErrors($errors)->withInput($request->all());
         } else {
             $order->update($data);
+            $user = User::where('peran', 'admin')->get();
 
+            Notification::send($user, new FeedbackProduct($order));
             return redirect()->route('orders.index')
                 ->with('success', 'Order berhasil diupdate.');
         }

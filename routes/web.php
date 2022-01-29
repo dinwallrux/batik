@@ -63,5 +63,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/city/{id}','CartController@get_city')->name('city');
 	Route::get('/origin={city_origin}&destination={city_destination}&weight={weight}&courier={courier}', 'CartController@get_ongkir')->name('ongkir');
 
+	Route::get('markAsRead/{id}', 'NotificationController@markAsRead')->name('markAsRead');
+
 });
 

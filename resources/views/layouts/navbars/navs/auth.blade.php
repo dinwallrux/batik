@@ -54,6 +54,41 @@
                     </span>
                 </a>
             </li>
+            @if( auth()->user()->peran == 'admin' )
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <i class="ni ni-bell-55"></i>
+                    <span class="badge badge-success" style="background-color: #fff;">{{ count(App\User::find(1)->unreadNotifications) }}</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right py-0 overflow-hidden">
+                    <!-- Dropdown header -->
+                    <div class="px-3 py-3">
+                        <h6 class="text-sm text-muted m-0">Anda memiliki <strong class="text-primary">{{ count(App\User::find(1)->unreadNotifications) }}</strong> feedback produk</h6>
+                    </div>
+                    <!-- List group -->
+                    <div class="list-group list-group-flush">
+                        @foreach (App\User::find(1)->unreadNotifications  as $notification)
+                        <a href="{{ route('order.self.view', $notification->data['order_id']) . '?id_notification=' . $notification->id }}" class="list-group-item list-group-item-action">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h4 class="mb-0 text-sm">{{ App\User::find($notification->data['nama_pembeli'])['name'] }}</h4>
+                                        </div>
+                                        <div class="text-right text-muted">
+                                            <small>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $notification->updated_at)->isoFormat('dddd, D-MM-Y') }}</small>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm mb-0">{{ $notification->data['feedback_produk'] }}</p>
+                                </div>
+                            </div>
+                        </a>
+                        @endforeach
+                    </div>
+                </div>
+            </li>
+            @endif
             <li class="nav-item dropdown">
                 <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media align-items-center">
