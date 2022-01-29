@@ -35,7 +35,7 @@
                         </div>
                         <br>
                         <div class="detail-order">
-                            <p><b>Proses pengerjaan produk yang diorder maksimal paling lambat 7 hari</b></p>
+                            <p style="color: red;"><b>Proses pengerjaan produk yang diorder maksimal paling lambat 7 hari</b></p>
                         </div>
                         <table class="table table-detail-order">
                             <thead>
