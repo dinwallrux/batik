@@ -106,6 +106,12 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('stock.index') }}">
+                            <i class="ion ion-md-stats text-primary"></i> {{ __('Stock Bahan Baku') }}
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('orders.index') }}">
                             <i class="ion ion-md-paper text-primary"></i> {{ __('Pesanan') }}
                         </a>

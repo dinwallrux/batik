@@ -39,6 +39,10 @@ Route::group(['middleware' => 'auth'], function () {
 		'alat' => 'alat'
 	])->middleware('admin');
 
+	Route::resource('stock', StockController::class)->except(['show', 'delete'])->parameters([
+		'stock' => 'stock'
+	])->middleware('admin');
+
 	Route::middleware(['auth'])->prefix('cart')->group(function(){
 		Route::get('/', 'CartController@index')->name('cart.index');
 		Route::get('/tambah-produk/{produk}', 'CartController@addCart')->name('cart.add');
